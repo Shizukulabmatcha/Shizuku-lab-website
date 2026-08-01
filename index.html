@@ -31,6 +31,7 @@
       <a href="#story">Our Story</a>
       <a href="#matcha">Our Matcha</a>
       <a href="#why">Why Us</a>
+      <a href="#library">Matcha Library</a>
       <a href="#menu">Menu</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -40,7 +41,7 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#story">Our Story</a><a href="#matcha">Our Matcha</a><a href="#why">Why Us</a>
-    <a href="#menu">Menu</a><a href="#contact">Contact</a>
+    <a href="#library">Matcha Library</a><a href="#menu">Menu</a><a href="#contact">Contact</a>
     <a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup ↗</a>
   </div>
 
@@ -102,8 +103,77 @@
       </div>
     </section>
 
+
+    <section class="library section" id="library">
+      <div class="library-intro reveal">
+        <p class="eyebrow">04 · THE MATCHA LIBRARY</p>
+        <h2>Look closer.<br>There is more in the bowl.</h2>
+        <p>A quiet collection of short guides for anyone curious about how matcha is grown, picked, milled and described.</p>
+      </div>
+
+      <div class="library-grid">
+        <button class="library-card reveal" data-topic="what-is-matcha">
+          <span>01</span><strong>What is matcha?</strong><small>From shaded tencha leaf to a fine powder.</small><i>Explore ↗</i>
+        </button>
+        <button class="library-card reveal" data-topic="harvest">
+          <span>02</span><strong>First vs second harvest</strong><small>Why harvest timing changes flavour and texture.</small><i>Compare ↗</i>
+        </button>
+        <button class="library-card reveal" data-topic="picking">
+          <span>03</span><strong>Hand-picked or machine-picked?</strong><small>Selection, consistency and what can affect the cup.</small><i>Discover ↗</i>
+        </button>
+        <button class="library-card reveal" data-topic="grinding">
+          <span>04</span><strong>How matcha is ground</strong><small>Stone milling, modern milling and why heat matters.</small><i>Learn ↗</i>
+        </button>
+        <button class="library-card reveal" data-topic="ceremonial">
+          <span>05</span><strong>“Ceremonial grade” explained</strong><small>A useful label, but not one official Japanese standard.</small><i>Read ↗</i>
+        </button>
+        <button class="library-card reveal" data-topic="atlas">
+          <span>06</span><strong>Matcha Atlas</strong><small>Explore a few of Japan's best-known tea regions.</small><i>Open map ↗</i>
+        </button>
+        <button class="library-card library-card-wide reveal" data-topic="cultivars">
+          <div class="library-powder-preview"><img src="matcha-library.jpg" alt="Matcha powder in a bamboo scoop"></div>
+          <div><span>07</span><strong>Cultivar gallery</strong><small>Yabukita, Saemidori, Okumidori and other tea cultivars, shown with powder imagery and approachable tasting notes.</small><i>Browse cultivars ↗</i></div>
+        </button>
+      </div>
+    </section>
+
+    <div class="library-overlay" id="libraryOverlay" aria-hidden="true"></div>
+    <aside class="library-drawer" id="libraryDrawer" aria-hidden="true" aria-label="The Matcha Library">
+      <button class="library-close" id="libraryClose" aria-label="Close The Matcha Library">×</button>
+
+      <div class="library-workspace">
+        <aside class="library-sidebar" aria-label="Matcha Library topics">
+          <div class="library-sidebar-brand">
+            <img src="logo-transparent.png" alt="Shizuku Lab">
+            <div>
+              <strong>SHIZUKU LAB</strong>
+              <span>THE MATCHA LIBRARY</span>
+            </div>
+          </div>
+
+          <p class="library-sidebar-title">Explore the library</p>
+
+          <nav class="library-topic-nav">
+            <button data-library-topic="what-is-matcha"><span>01</span>What is matcha?</button>
+            <button data-library-topic="harvest"><span>02</span>First vs second harvest</button>
+            <button data-library-topic="picking"><span>03</span>Hand-picked vs machine-picked</button>
+            <button data-library-topic="grinding"><span>04</span>Stone grinding vs modern milling</button>
+            <button data-library-topic="ceremonial"><span>05</span>Ceremonial grade explained</button>
+            <button data-library-topic="atlas"><span>06</span>Matcha Atlas</button>
+            <button data-library-topic="cultivars"><span>07</span>Cultivar gallery</button>
+          </nav>
+
+          <p class="library-sidebar-note">Take your time. Choose a topic and explore at your own pace.</p>
+        </aside>
+
+        <section class="library-content-panel">
+          <div id="libraryContent"></div>
+        </section>
+      </div>
+    </aside>
+
     <section class="menu" id="menu">
-      <div class="menu-heading section reveal"><p class="eyebrow">04 · OUR MENU</p><h2>One cup.<br>One mood.</h2></div>
+      <div class="menu-heading section reveal"><p class="eyebrow">05 · OUR MENU</p><h2>One cup.<br>One mood.</h2></div>
 
       <article class="product product-green">
         <div class="product-sticky"><div class="product-image"><img src="matcha-latte.jpg" alt="Matcha Latte"></div><div class="product-copy"><p class="eyebrow">SIGNATURE</p><h3>Matcha Latte</h3><p>The cup that started everything. Smooth, creamy and quietly balanced.</p><strong>$5.90</strong></div></div>
@@ -122,7 +192,7 @@
     </section>
 
     <section class="journal section">
-      <div class="journal-head reveal"><p class="eyebrow">05 · FROM THE LAB</p><h2>Small updates,<br>kept with care.</h2><p>A quiet place for new drinks, matcha notes and moments behind the whisk.</p></div>
+      <div class="journal-head reveal"><p class="eyebrow">06 · FROM THE LAB</p><h2>Small updates,<br>kept with care.</h2><p>A quiet place for new drinks, matcha notes and moments behind the whisk.</p></div>
       <div class="journal-grid">
         <article class="reveal"><img src="Ichigo-houjicha-latte.jpg" alt="Ichigo Hojicha Latte"><small>AUGUST 2026</small><h3>Ichigo Hojicha</h3><p>Roasted tea and strawberry, layered one cup at a time.</p></article>
         <article class="reveal"><img src="Lemonade-matcha-soda.jpg" alt="Lemonade Matcha Soda"><small>FROM THE LAB</small><h3>A brighter pour</h3><p>Matcha, citrus and sparkling refreshment for warmer days.</p></article>
@@ -132,7 +202,7 @@
 
     <section class="contact" id="contact">
       <div class="contact-inner reveal">
-        <p class="eyebrow light">06 · CONTACT</p><h2>Meet us in<br>Toa Payoh.</h2>
+        <p class="eyebrow light">07 · CONTACT</p><h2>Meet us in<br>Toa Payoh.</h2>
         <div class="contact-grid">
           <div><span>Collection</span><p>Weekend pre-order<br>Toa Payoh Lorong 1</p></div>
           <div><span>Instagram</span><a href="https://www.instagram.com/shizukulab.matcha/" target="_blank" rel="noopener">@shizukulab.matcha</a></div>
