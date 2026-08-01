@@ -43,19 +43,202 @@ const libraryTopics={
   'picking':`<article class="library-article"><p class="eyebrow">THE MATCHA LIBRARY · 03</p><h2>Hand-picked or machine-picked?</h2><p class="lead">Picking method affects how selectively leaves can be harvested, but it does not create one guaranteed flavour on its own.</p><h3>Hand picking</h3><p>Skilled pickers can select tender shoots and avoid coarser leaves or stems. This can improve uniformity and is often used for limited, high-value teas. It is slow and expensive, so it is uncommon for most everyday matcha.</p><h3>Machine picking</h3><p>Modern harvesters are fast and consistent. With careful field management and sorting, machine-picked tea can still be excellent. The possible trade-off is a broader mix of leaf ages or more stem material before later refinement.</p><div class="library-note">Taste is shaped by the whole chain—cultivar, shading, field, harvest date, sorting, steaming, drying and milling—not by hand versus machine alone.</div></article>`,
   'grinding':`<article class="library-article"><p class="eyebrow">THE MATCHA LIBRARY · 04</p><h2>How matcha is ground</h2><p class="lead">Traditional granite stone mills grind tencha slowly into a very fine powder. Modern impact or ball mills can process tea faster and consistently, especially at larger scale.</p><h3>Why slow stone milling is valued</h3><p>Slow milling helps limit frictional heat and creates a fine particle structure associated with a smooth mouthfeel. It is also labour-intensive and low-output.</p><h3>What about modern mills?</h3><p>Modern equipment is not automatically inferior. Good temperature control, well-prepared tencha and suitable particle size can still produce quality matcha. Poorly controlled heat or rough grinding can dull aroma, colour and texture.</p><div class="library-note">“Stone-ground” tells you something about the process, but the leaf quality before milling remains essential.</div></article>`,
   'ceremonial':`<article class="library-article"><p class="eyebrow">THE MATCHA LIBRARY · 05</p><h2>Why is it called “ceremonial grade”?</h2><p class="lead">Outside Japan, “ceremonial grade” is commonly used for matcha intended to be whisked and drunk with water. It usually suggests a smoother, greener and less bitter powder than culinary products.</p><h3>What the term does not guarantee</h3><p>There is no single nationwide Japanese certification that gives every producer the same ceremonial-grade threshold. Brands and sellers may apply the term differently.</p><h3>What to look at instead</h3><ul><li>Producer and origin</li><li>Harvest and picking standard</li><li>Tencha quality and shading</li><li>Cultivar or blend</li><li>Freshness, colour, aroma and taste</li><li>Whether it suits water, milk or cooking</li></ul><div class="library-note">Choose by flavour and intended use—not by the word “ceremonial” alone.</div></article>`,
-  'atlas':`<article class="library-article"><p class="eyebrow">THE MATCHA LIBRARY · 06</p><h2>Matcha Atlas</h2><p class="lead">Japan's tea regions have different cultivars, climates and production traditions. These profiles are broad tendencies, not strict rules for every powder.</p><div class="atlas-layout"><div class="japan-map" aria-label="Stylised map of Japan with matcha regions"><button class="map-pin" data-region="saitama" aria-label="Sayama, Saitama"></button><button class="map-pin" data-region="shizuoka" aria-label="Shizuoka"></button><button class="map-pin" data-region="aichi" aria-label="Nishio, Aichi"></button><button class="map-pin active" data-region="kyoto" aria-label="Uji, Kyoto"></button><button class="map-pin" data-region="fukuoka" aria-label="Yame, Fukuoka"></button><button class="map-pin" data-region="kagoshima" aria-label="Kagoshima"></button></div><div class="region-panel" id="regionPanel"></div></div></article>`,
-  'cultivars':`<article class="library-article"><p class="eyebrow">THE MATCHA LIBRARY · 07</p><h2>Cultivar gallery</h2><p class="lead">A cultivar is a cultivated tea variety. It can influence aroma, colour, structure and sweetness—but terroir, harvest and processing still shape the final cup.</p><div class="cultivar-grid"><article class="cultivar-card"><img src="matcha-library.jpg" alt="Green matcha powder"><div><h3>Yabukita</h3><p>Balanced, fresh and familiar. Often vegetal with gentle sweetness and a clean structure.</p></div></article><article class="cultivar-card"><img src="matcha-library.jpg" alt="Vivid matcha powder"><div><h3>Saemidori</h3><p>Known for vivid colour, soft sweetness and low astringency when grown and processed well.</p></div></article><article class="cultivar-card"><img src="matcha-library.jpg" alt="Rich green matcha powder"><div><h3>Okumidori</h3><p>Round, mellow and deep green, often used to add smooth body to blends.</p></div></article><article class="cultivar-card"><img src="matcha-library.jpg" alt="Matcha powder close-up"><div><h3>Gokou</h3><p>Rich umami, sweet aroma and a distinctive shaded-tea character, especially associated with Kyoto.</p></div></article></div><p class="source-note">Powder imagery is illustrative. The exact colour and texture of any matcha varies by producer, harvest, milling and photography.</p></article>`
+  'atlas':`<article class="library-article">
+    <p class="eyebrow">THE MATCHA LIBRARY · 06</p>
+    <h2>Matcha Atlas</h2>
+    <p class="lead">This map focuses on regions strongly connected with tencha, matcha or high-grade shaded tea. It is not a complete map of every Japanese tea-growing area.</p>
+
+    <div class="atlas-layout">
+      <div class="japan-map" aria-label="Stylised map of Japan with matcha and shaded-tea regions">
+        <button class="map-pin" data-region="saitama" aria-label="Sayama, Saitama"><span>Sayama</span></button>
+        <button class="map-pin" data-region="shizuoka" aria-label="Shizuoka"><span>Shizuoka</span></button>
+        <button class="map-pin" data-region="aichi" aria-label="Nishio, Aichi"><span>Nishio</span></button>
+        <button class="map-pin active" data-region="kyoto" aria-label="Uji, Kyoto"><span>Uji</span></button>
+        <button class="map-pin" data-region="mie" aria-label="Ise, Mie"><span>Ise</span></button>
+        <button class="map-pin" data-region="fukuoka" aria-label="Yame, Fukuoka"><span>Yame</span></button>
+        <button class="map-pin" data-region="saga" aria-label="Ureshino, Saga"><span>Ureshino</span></button>
+        <button class="map-pin" data-region="kagoshima" aria-label="Kagoshima"><span>Kagoshima</span></button>
+      </div>
+      <div class="region-panel" id="regionPanel"></div>
+    </div>
+
+    <p class="source-note">Regional cultivar lists are examples, not exclusive rules. A cultivar may be grown in more than one prefecture.</p>
+  </article>`,
+  'cultivars':`<article class="library-article">
+    <p class="eyebrow">THE MATCHA LIBRARY · 07</p>
+    <h2>Single-cultivar matcha</h2>
+    <p class="lead">A cultivar is a cultivated tea variety. It can influence aroma, colour, texture and structure, but farm, shading, harvest and processing still shape the final cup.</p>
+    <div class="cultivar-grid"><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Yabukita">
+        <div>
+          <p class="cultivar-region">Japan-wide</p>
+          <h3>Yabukita</h3>
+          <p>Balanced, fresh and structured; often vegetal with a clean finish.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Saemidori">
+        <div>
+          <p class="cultivar-region">Kagoshima · Kyushu</p>
+          <h3>Saemidori</h3>
+          <p>Vivid colour, soft sweetness and comparatively low astringency.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Okumidori">
+        <div>
+          <p class="cultivar-region">Kyoto · Kagoshima · Japan-wide</p>
+          <h3>Okumidori</h3>
+          <p>Round, mellow and deep green, with smooth body.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Gokou">
+        <div>
+          <p class="cultivar-region">Kyoto</p>
+          <h3>Gokou</h3>
+          <p>Deep shaded-tea character, rich umami and a sweet aroma.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Asahi">
+        <div>
+          <p class="cultivar-region">Kyoto</p>
+          <h3>Asahi</h3>
+          <p>Highly prized for tencha; elegant, dense and suited to rich whisked tea.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Samidori">
+        <div>
+          <p class="cultivar-region">Kyoto</p>
+          <h3>Samidori</h3>
+          <p>Classic Uji cultivar with refined aroma, gentle sweetness and balanced umami.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Ujihikari">
+        <div>
+          <p class="cultivar-region">Kyoto</p>
+          <h3>Ujihikari</h3>
+          <p>Intense umami, aromatic depth and a soft, refined finish.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Uji Midori">
+        <div>
+          <p class="cultivar-region">Kyoto</p>
+          <h3>Uji Midori</h3>
+          <p>Refreshing varietal aroma with good colour and a clean, elegant profile.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Yamatomidori">
+        <div>
+          <p class="cultivar-region">Nara · cooler regions</p>
+          <h3>Yamatomidori</h3>
+          <p>An older cold-tolerant cultivar with a firmer, traditional tea character.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Okuyutaka">
+        <div>
+          <p class="cultivar-region">Kagoshima · Kyushu</p>
+          <h3>Okuyutaka</h3>
+          <p>Late-budding and mellow, often used to extend the harvest window.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Kanayamidori">
+        <div>
+          <p class="cultivar-region">Shizuoka · Kagoshima</p>
+          <h3>Kanayamidori</h3>
+          <p>Deep green colour and a distinctive cultivar aroma.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Tsuyuhikari">
+        <div>
+          <p class="cultivar-region">Shizuoka</p>
+          <h3>Tsuyuhikari</h3>
+          <p>Bright colour and fresh aromatic lift, often with a soft modern profile.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Sayamakaori">
+        <div>
+          <p class="cultivar-region">Saitama · Shizuoka</p>
+          <h3>Sayamakaori</h3>
+          <p>Bold aroma, firm structure and a more assertive tea character.</p>
+        </div>
+      </article><article class="cultivar-card">
+        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Yutakamidori">
+        <div>
+          <p class="cultivar-region">Kagoshima</p>
+          <h3>Yutakamidori</h3>
+          <p>Early-budding, vivid and aromatic, with a fuller southern-Japan style.</p>
+        </div>
+      </article></div>
+    <p class="source-note">Powder imagery is illustrative. Taste notes are broad tendencies rather than guarantees for every producer.</p>
+  </article>`
 };
 const regions={
-  kyoto:{name:'Uji, Kyoto',copy:'Historic tencha and matcha culture, with many shaded-tea cultivars and producers.',tags:['Umami','Sweet aroma','Elegant','Samidori · Gokou · Asahi']},
-  aichi:{name:'Nishio, Aichi',copy:'A major tencha-producing area known for established processing and matcha used across drinking and food applications.',tags:['Full body','Creamy','Balanced','Yabukita · Samidori']},
-  shizuoka:{name:'Shizuoka',copy:'Japan’s largest tea-growing prefecture, with diverse elevations, climates and cultivar choices.',tags:['Fresh','Vegetal','Balanced','Yabukita · Tsuyuhikari']},
-  kagoshima:{name:'Kagoshima',copy:'Warm southern climate and modern tea farming support early harvests and a wide cultivar range.',tags:['Vivid colour','Sweet','Creamy','Saemidori · Okumidori']},
-  fukuoka:{name:'Yame, Fukuoka',copy:'Known for high-quality shaded teas, including gyokuro and matcha with concentrated sweetness and umami.',tags:['Deep umami','Soft','Rich','Saemidori · Okumidori']},
-  saitama:{name:'Sayama, Saitama',copy:'A cooler northern tea region associated with strong aroma and a bolder, structured tea character.',tags:['Bold','Roasted nuance','Structured','Yabukita']}
+  kyoto:{
+    name:'Uji, Kyoto',
+    copy:'Japan’s best-known historic matcha region, strongly associated with tencha, shaded cultivation and traditional Uji tea production.',
+    cultivars:['Asahi','Samidori','Ujihikari','Gokou','Uji Midori','Okumidori'],
+    notes:['Deep umami','Refined aroma','Elegant sweetness']
+  },
+  aichi:{
+    name:'Nishio, Aichi',
+    copy:'A major tencha and matcha-producing area with long-established shaded cultivation and granite-milling traditions.',
+    cultivars:['Yabukita','Samidori','Okumidori'],
+    notes:['Full body','Creamy texture','Balanced']
+  },
+  shizuoka:{
+    name:'Shizuoka',
+    copy:'Japan’s largest tea-growing prefecture, with many microclimates and a strong base of modern cultivar research.',
+    cultivars:['Yabukita','Tsuyuhikari','Sayamakaori','Kanayamidori'],
+    notes:['Fresh','Vegetal','Structured']
+  },
+  kagoshima:{
+    name:'Kagoshima',
+    copy:'A major southern tea region and leading tencha producer, known for early harvests and broad cultivar diversity.',
+    cultivars:['Saemidori','Yutakamidori','Okuyutaka','Okumidori','Kanayamidori','Yabukita'],
+    notes:['Vivid colour','Soft sweetness','Creamy']
+  },
+  fukuoka:{
+    name:'Yame, Fukuoka',
+    copy:'Known for high-grade shaded teas and concentrated umami, with a strong reputation for gyokuro and premium tea production.',
+    cultivars:['Saemidori','Okumidori','Yabukita'],
+    notes:['Deep umami','Soft finish','Rich']
+  },
+  saitama:{
+    name:'Sayama, Saitama',
+    copy:'A cooler tea region with a reputation for bold aroma and a more structured cup.',
+    cultivars:['Sayamakaori','Yabukita'],
+    notes:['Bold aroma','Firm structure','Long finish']
+  },
+  mie:{
+    name:'Ise, Mie',
+    copy:'An important tea-producing prefecture with shaded-tea and tencha production alongside sencha.',
+    cultivars:['Yabukita','Saemidori','Okumidori'],
+    notes:['Balanced','Green','Mellow']
+  },
+  saga:{
+    name:'Ureshino, Saga',
+    copy:'A historic tea region best known for tamaryokucha, with broader tea production that also includes shaded styles.',
+    cultivars:['Saemidori','Yabukita','Okumidori'],
+    notes:['Sweet aroma','Rounded','Soft']
+  }
 };
 const libraryDrawer=document.getElementById('libraryDrawer'),libraryOverlay=document.getElementById('libraryOverlay'),libraryContent=document.getElementById('libraryContent'),libraryClose=document.getElementById('libraryClose');
-function renderRegion(key){const r=regions[key];const panel=document.getElementById('regionPanel');if(!panel||!r)return;panel.innerHTML=`<p class="eyebrow">REGION</p><h3>${r.name}</h3><p>${r.copy}</p><div class="region-tags">${r.tags.map(t=>`<span>${t}</span>`).join('')}</div><p class="source-note">Regional flavour descriptions are broad educational guides; individual matcha varies by farm, cultivar, harvest and processing.</p>`;}
+function renderRegion(key){
+  const r=regions[key];
+  const panel=document.getElementById('regionPanel');
+  if(!panel||!r)return;
+  panel.innerHTML=`
+    <p class="eyebrow">REGION</p>
+    <h3>${r.name}</h3>
+    <p>${r.copy}</p>
+    <div class="region-section">
+      <span>Single cultivars to explore</span>
+      <div class="region-tags">${r.cultivars.map(t=>`<span>${t}</span>`).join('')}</div>
+    </div>
+    <div class="region-section">
+      <span>Broad style</span>
+      <div class="region-tags">${r.notes.map(t=>`<span>${t}</span>`).join('')}</div>
+    </div>
+    <p class="source-note">These are educational tendencies, not fixed flavour guarantees.</p>`;
+}
 function openLibrary(topic){
   libraryContent.innerHTML=libraryTopics[topic]||'';
   libraryDrawer.classList.add('open');
