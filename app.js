@@ -1,4 +1,29 @@
-const loader=document.getElementById('loader'),header=document.getElementById('header'),progress=document.getElementById('scrollProgress'),cursor=document.getElementById('chasenCursor'),toggle=document.getElementById('menuToggle'),mobile=document.getElementById('mobileMenu');window.addEventListener('load',()=>setTimeout(()=>{loader.classList.add('hide');document.body.classList.remove('is-loading');document.querySelectorAll('.hero .reveal').forEach((e,i)=>setTimeout(()=>e.classList.add('visible'),i*170))},900));const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.14});document.querySelectorAll('.reveal,.image-reveal').forEach(e=>observer.observe(e));function clamp(n,a,b){return Math.min(b,Math.max(a,n))}function update(){const y=scrollY,total=document.documentElement.scrollHeight-innerHeight;progress.style.width=`${total?y/total*100:0}%`;header.classList.toggle('scrolled',y>30);const hero=document.querySelector('.hero-media img');if(hero&&y<innerHeight*1.2)hero.style.transform=`scale(${1.03+y*.00018})`;const ph=document.querySelector('.philosophy'),lines=[...document.querySelectorAll('.philosophy-line')];if(ph){const r=ph.getBoundingClientRect(),p=clamp(-r.top/(ph.offsetHeight-innerHeight),0,1);lines.forEach((l,i)=>l.classList.toggle('active',p>(i+.08)/lines.length))}const ms=document.querySelector('.matcha'),photo=document.querySelector('.matcha-photo'),copy=document.querySelector('.matcha-copy');if(ms&&photo&&copy){const r=ms.getBoundingClientRect(),p=clamp(-r.top/(ms.offsetHeight-innerHeight),0,1);photo.style.transform=`scale(${.82+p*.24})`;copy.style.transform=`translateY(${(1-p)*35}px)`;copy.style.opacity=String(.25+p*.9)}}window.addEventListener('scroll',update,{passive:true});update();if(matchMedia('(pointer:fine)').matches){addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});document.querySelectorAll('a,button,.product-image').forEach(e=>{e.addEventListener('mouseenter',()=>cursor.classList.add('active'));e.addEventListener('mouseleave',()=>cursor.classList.remove('active'))})}document.addEventListener('click',e=>{const r=document.createElement('span');r.className='ripple';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';document.body.appendChild(r);requestAnimationFrame(()=>r.classList.add('go'));setTimeout(()=>r.remove(),760)});toggle.addEventListener('click',()=>{const o=mobile.classList.toggle('open');toggle.classList.toggle('open',o);toggle.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':''});mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');toggle.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.style.overflow=''}));
+const loader=document.getElementById('loader'),header=document.getElementById('header'),progress=document.getElementById('scrollProgress'),cursor=document.getElementById('chasenCursor'),toggle=document.getElementById('menuToggle'),mobile=document.getElementById('mobileMenu');window.addEventListener('load',()=>setTimeout(()=>{loader.classList.add('hide');document.body.classList.remove('is-loading');document.querySelectorAll('.hero .reveal').forEach((e,i)=>setTimeout(()=>e.classList.add('visible'),i*170))},900));const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.14});document.querySelectorAll('.reveal,.image-reveal').forEach(e=>observer.observe(e));function clamp(n,a,b){return Math.min(b,Math.max(a,n))}function update(){const y=scrollY,total=document.documentElement.scrollHeight-innerHeight;progress.style.width=`${total?y/total*100:0}%`;header.classList.toggle('scrolled',y>30);const hero=document.querySelector('.hero-media img');if(hero&&y<innerHeight*1.2)hero.style.transform=`scale(${1.03+y*.00018})`;const ph=document.querySelector('.philosophy'),lines=[...document.querySelectorAll('.philosophy-line')];if(ph){const r=ph.getBoundingClientRect(),p=clamp(-r.top/(ph.offsetHeight-innerHeight),0,1);lines.forEach((l,i)=>l.classList.toggle('active',p>(i+.08)/lines.length))}const ms=document.querySelector('.matcha'),photo=document.querySelector('.matcha-photo'),copy=document.querySelector('.matcha-copy');if(ms&&photo&&copy){const r=ms.getBoundingClientRect(),p=clamp(-r.top/(ms.offsetHeight-innerHeight),0,1);photo.style.transform=`scale(${.82+p*.24})`;copy.style.transform=`translateY(${(1-p)*35}px)`;copy.style.opacity=String(.25+p*.9)}}window.addEventListener('scroll',update,{passive:true});update();if(matchMedia('(pointer:fine)').matches&&cursor){
+  const cursorImage=cursor.querySelector('img');
+  const enableCustomCursor=()=>{
+    document.documentElement.classList.add('custom-cursor-ready');
+    cursor.classList.add('ready');
+  };
+  const disableCustomCursor=()=>{
+    document.documentElement.classList.remove('custom-cursor-ready');
+    cursor.classList.remove('ready');
+  };
+  if(cursorImage){
+    if(cursorImage.complete&&cursorImage.naturalWidth>0) enableCustomCursor();
+    else{
+      cursorImage.addEventListener('load',enableCustomCursor,{once:true});
+      cursorImage.addEventListener('error',disableCustomCursor,{once:true});
+    }
+  }
+  addEventListener('mousemove',e=>{
+    cursor.style.left=e.clientX+'px';
+    cursor.style.top=e.clientY+'px';
+  });
+  document.querySelectorAll('a,button,.product-image,.library-card,.cultivar-card').forEach(e=>{
+    e.addEventListener('mouseenter',()=>cursor.classList.add('active'));
+    e.addEventListener('mouseleave',()=>cursor.classList.remove('active'));
+  });
+}document.addEventListener('click',e=>{const r=document.createElement('span');r.className='ripple';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';document.body.appendChild(r);requestAnimationFrame(()=>r.classList.add('go'));setTimeout(()=>r.remove(),760)});toggle.addEventListener('click',()=>{const o=mobile.classList.toggle('open');toggle.classList.toggle('open',o);toggle.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':''});mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');toggle.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.style.overflow=''}));
 
 const libraryTopics={
   'what-is-matcha':`<article class="library-article library-article-visual">
@@ -64,111 +89,7 @@ const libraryTopics={
 
     <p class="source-note">Regional cultivar lists are examples, not exclusive rules. A cultivar may be grown in more than one prefecture.</p>
   </article>`,
-  'cultivars':`<article class="library-article">
-    <p class="eyebrow">THE MATCHA LIBRARY · 07</p>
-    <h2>Single-cultivar matcha</h2>
-    <p class="lead">A cultivar is a cultivated tea variety. It can influence aroma, colour, texture and structure, but farm, shading, harvest and processing still shape the final cup.</p>
-    <div class="cultivar-grid"><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Yabukita">
-        <div>
-          <p class="cultivar-region">Japan-wide</p>
-          <h3>Yabukita</h3>
-          <p>Balanced, fresh and structured; often vegetal with a clean finish.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Saemidori">
-        <div>
-          <p class="cultivar-region">Kagoshima · Kyushu</p>
-          <h3>Saemidori</h3>
-          <p>Vivid colour, soft sweetness and comparatively low astringency.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Okumidori">
-        <div>
-          <p class="cultivar-region">Kyoto · Kagoshima · Japan-wide</p>
-          <h3>Okumidori</h3>
-          <p>Round, mellow and deep green, with smooth body.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Gokou">
-        <div>
-          <p class="cultivar-region">Kyoto</p>
-          <h3>Gokou</h3>
-          <p>Deep shaded-tea character, rich umami and a sweet aroma.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Asahi">
-        <div>
-          <p class="cultivar-region">Kyoto</p>
-          <h3>Asahi</h3>
-          <p>Highly prized for tencha; elegant, dense and suited to rich whisked tea.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Samidori">
-        <div>
-          <p class="cultivar-region">Kyoto</p>
-          <h3>Samidori</h3>
-          <p>Classic Uji cultivar with refined aroma, gentle sweetness and balanced umami.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Ujihikari">
-        <div>
-          <p class="cultivar-region">Kyoto</p>
-          <h3>Ujihikari</h3>
-          <p>Intense umami, aromatic depth and a soft, refined finish.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Uji Midori">
-        <div>
-          <p class="cultivar-region">Kyoto</p>
-          <h3>Uji Midori</h3>
-          <p>Refreshing varietal aroma with good colour and a clean, elegant profile.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Yamatomidori">
-        <div>
-          <p class="cultivar-region">Nara · cooler regions</p>
-          <h3>Yamatomidori</h3>
-          <p>An older cold-tolerant cultivar with a firmer, traditional tea character.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Okuyutaka">
-        <div>
-          <p class="cultivar-region">Kagoshima · Kyushu</p>
-          <h3>Okuyutaka</h3>
-          <p>Late-budding and mellow, often used to extend the harvest window.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Kanayamidori">
-        <div>
-          <p class="cultivar-region">Shizuoka · Kagoshima</p>
-          <h3>Kanayamidori</h3>
-          <p>Deep green colour and a distinctive cultivar aroma.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Tsuyuhikari">
-        <div>
-          <p class="cultivar-region">Shizuoka</p>
-          <h3>Tsuyuhikari</h3>
-          <p>Bright colour and fresh aromatic lift, often with a soft modern profile.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Sayamakaori">
-        <div>
-          <p class="cultivar-region">Saitama · Shizuoka</p>
-          <h3>Sayamakaori</h3>
-          <p>Bold aroma, firm structure and a more assertive tea character.</p>
-        </div>
-      </article><article class="cultivar-card">
-        <img src="matcha-library.jpg" alt="Illustrative matcha powder for Yutakamidori">
-        <div>
-          <p class="cultivar-region">Kagoshima</p>
-          <h3>Yutakamidori</h3>
-          <p>Early-budding, vivid and aromatic, with a fuller southern-Japan style.</p>
-        </div>
-      </article></div>
-    <p class="source-note">Powder imagery is illustrative. Taste notes are broad tendencies rather than guarantees for every producer.</p>
-  </article>`
+  'cultivars':`<article class="library-article"><p class="eyebrow">THE MATCHA LIBRARY · 07</p><h2>Tea cultivars found in matcha</h2><p class="lead">The cultivar is the plant variety; matcha is the finished tea. To avoid showing a random green powder as a specific cultivar, this gallery only uses cultivar-specific photos when an exact single-cultivar product page was verified.</p><div class="cultivar-explainer">Asahi, Saemidori, Okumidori and Gokou currently have verified single-cultivar reference images. The remaining cards keep a neutral illustrative photo until a reliable exact match is found.</div><h3 class="library-subtitle">Documented for tencha in Kyoto</h3><div class="cultivar-grid"><article class="cultivar-card"><a class="cultivar-media verified-media" href="https://ujimatchatea.com/products/asahi-handpicked-ceremonial-uji-matcha-30g" target="_blank" rel="noopener"><img src="https://ujimatchatea.com/cdn/shop/files/asahi-organic-uji-matcha-powder-kyoto_900x.webp?v=1780057270" alt="Asahi single-cultivar matcha product reference" loading="lazy" onerror="this.src='matcha-library.jpg';this.closest('.cultivar-media').classList.add('image-fallback')"><span>Verified single-cultivar product image ↗</span></a><div class="cultivar-card-copy"><span class="cultivar-status official">Documented tencha suitability</span><p class="cultivar-region">Kyoto</p><h3>Asahi</h3><p>Documented by Kyoto Prefecture as a principal tencha cultivar. Rich, dense and highly regarded for shaded tea.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Samidori" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status official">Documented tencha suitability</span><p class="cultivar-region">Kyoto</p><h3>Samidori</h3><p>Documented as a principal Kyoto tencha cultivar. Refined aroma, gentle sweetness and balanced umami.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Ujihikari" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status official">Documented tencha suitability</span><p class="cultivar-region">Kyoto</p><h3>Ujihikari</h3><p>Documented as a principal Kyoto tencha cultivar. Aromatic, umami-forward and refined.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Uji Midori" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status official">Documented tencha suitability</span><p class="cultivar-region">Kyoto</p><h3>Uji Midori</h3><p>Listed by Kyoto Prefecture among cultivars suited to gyokuro and tencha.</p></div></article><article class="cultivar-card"><a class="cultivar-media verified-media" href="https://ujimatchatea.com/products/uji-matcha-goko-cultivar-30g" target="_blank" rel="noopener"><img src="https://ujimatchatea.com/cdn/shop/files/goko-uji-matcha-powder-texture-jar_900x.webp?v=1771903019" alt="Gokou single-cultivar matcha product reference" loading="lazy" onerror="this.src='matcha-library.jpg';this.closest('.cultivar-media').classList.add('image-fallback')"><span>Verified single-cultivar product image ↗</span></a><div class="cultivar-card-copy"><span class="cultivar-status official">Documented tencha suitability</span><p class="cultivar-region">Kyoto</p><h3>Gokou</h3><p>Listed by Kyoto Prefecture among cultivars suited to gyokuro and tencha; known for distinctive shaded-tea aroma.</p></div></article><article class="cultivar-card"><a class="cultivar-media verified-media" href="https://ujimatchatea.com/products/organic-uji-matcha-okumidori-cultivar-30g" target="_blank" rel="noopener"><img src="https://ujimatchatea.com/cdn/shop/files/organic-uji-matcha-okumidori-ceremonial-30g-tin-square_900x.webp?v=1780057848" alt="Okumidori single-cultivar matcha product reference" loading="lazy" onerror="this.src='matcha-library.jpg';this.closest('.cultivar-media').classList.add('image-fallback')"><span>Verified single-cultivar product image ↗</span></a><div class="cultivar-card-copy"><span class="cultivar-status official">Documented tencha suitability</span><p class="cultivar-region">Japan-wide</p><h3>Okumidori</h3><p>Listed by Kyoto Prefecture as suitable for gyokuro and tencha; mellow, green and smooth.</p></div></article></div><h3 class="library-subtitle">Also encountered as single-cultivar matcha</h3><div class="cultivar-grid"><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Yabukita" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Japan-wide</p><h3>Yabukita</h3><p>Japan’s most widely planted tea cultivar and commonly processed into many tea styles, including some single-cultivar matcha.</p></div></article><article class="cultivar-card"><a class="cultivar-media verified-media" href="https://ujimatchatea.com/products/organic-uji-matcha-saemidori-cultivar-30g" target="_blank" rel="noopener"><img src="https://ujimatchatea.com/cdn/shop/files/organic-uji-matcha-saemidori-cultivar-30g-jas-certified_900x.webp?v=1763535111" alt="Saemidori single-cultivar matcha product reference" loading="lazy" onerror="this.src='matcha-library.jpg';this.closest('.cultivar-media').classList.add('image-fallback')"><span>Verified single-cultivar product image ↗</span></a><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Kagoshima · Kyushu</p><h3>Saemidori</h3><p>Widely cultivated for high-quality green tea and commonly encountered in modern single-cultivar matcha.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Okuyutaka" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Kagoshima · Kyushu</p><h3>Okuyutaka</h3><p>A recognised Japanese tea cultivar; some producers process it as matcha, but it is not exclusively a matcha cultivar.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Kanayamidori" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Shizuoka · Kagoshima</p><h3>Kanayamidori</h3><p>A recognised green-tea cultivar that may be processed into matcha by individual producers.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Yamatomidori" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Nara · cooler regions</p><h3>Yamatomidori</h3><p>An older Japanese tea cultivar. Matcha examples exist, but its identity alone does not guarantee tencha processing.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Tsuyuhikari" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Shizuoka</p><h3>Tsuyuhikari</h3><p>A modern green-tea cultivar sometimes sold as single-cultivar matcha, depending on the producer.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Sayamakaori" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Saitama · Shizuoka</p><h3>Sayamakaori</h3><p>A bold aromatic tea cultivar; matcha use depends on shading and tencha processing.</p></div></article><article class="cultivar-card"><div class="cultivar-media illustrative-media"><img src="matcha-library.jpg" alt="Illustrative matcha powder for Yutakamidori" loading="lazy"><span>Illustrative image — verified cultivar photo not added</span></div><div class="cultivar-card-copy"><span class="cultivar-status broader">Used as matcha by some producers</span><p class="cultivar-region">Kagoshima</p><h3>Yutakamidori</h3><p>A major Kagoshima tea cultivar. It can appear as matcha, but is also widely used for other green-tea styles.</p></div></article></div><p class="source-note">External reference images remain hosted by their original product sources and may change or become unavailable. Click a verified image to open its source product page.</p></article>`
 };
 const regions={
   kyoto:{
