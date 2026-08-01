@@ -1,165 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Shizuku Lab — matcha and hojicha drinks, whisked to order in Singapore.">
-  <title>SHIZUKU LAB — Matcha & Hojicha</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f0e7" />
+  <meta name="description" content="Shizuku Lab — freshly whisked Japanese matcha, made slowly in Toa Payoh." />
+  <title>Shizuku Lab — Made Slowly</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gloock&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="header">
-  <a class="logo" href="#top">SHIZUKU<br><span>LAB</span></a>
-  <nav class="nav">
-    <a href="#menu">Menu</a>
-    <a href="#story">About</a>
-    <a href="#collection">Collection</a>
-    <a href="#faq">FAQ</a>
-  </nav>
-  <a class="nav-order" href="#order">Order <span>↗</span></a>
-</header>
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true">
+    <div class="loading-drop"></div><div class="loading-ripple"></div>
+    <div class="loading-logo"><span class="kanji">雫</span><span class="loading-name">SHIZUKU LAB</span></div>
+  </div>
+  <div class="progress" id="progress"></div>
+  <div class="custom-cursor" id="cursor" aria-hidden="true">
+    <svg viewBox="0 0 42 58"><path d="M21 2v18"/><path d="M14 4l4 16M28 4l-4 16M8 8l8 14M34 8l-8 14"/><path d="M10 18c4 4 7 7 11 15M32 18c-4 4-7 7-11 15"/><path d="M6 24c7 5 11 11 15 21M36 24c-7 5-11 11-15 21"/><path d="M21 20v34"/></svg>
+  </div>
 
-<main id="top">
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="label">MATCHA / HOJICHA · SINGAPORE</p>
-      <h1>A little<br><i>matcha</i><br>moment.</h1>
-      <p class="lead">Small-batch drinks, whisked to order for your weekend ritual.</p>
-      <div class="hero-meta">
-        <span>PRE-ORDER</span>
-        <span>SELF COLLECTION</span>
-        <span>SAT & SUN</span>
-      </div>
-      <a class="btn dark" href="#menu">Explore menu <span>↓</span></a>
-    </div>
-    <div class="photo photo-hero">
-      <div>
-        <strong>SHIZUKU LAB</strong>
-        <span>YOUR HERO PHOTO</span>
-      </div>
-    </div>
-  </section>
+  <header class="site-header" id="siteHeader">
+    <a href="#home" class="brand"><span class="brand-kanji">雫</span><span class="brand-name">SHIZUKU LAB</span></a>
+    <nav class="desktop-nav"><a href="#story">Our Story</a><a href="#matcha">Our Matcha</a><a href="#why">Why Us</a><a href="#menu">Menu</a><a href="#contact">Contact</a></nav>
+    <a class="order-link" href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div class="mobile-menu" id="mobileMenu"><a href="#story">Our Story</a><a href="#matcha">Our Matcha</a><a href="#why">Why Us</a><a href="#menu">Menu</a><a href="#contact">Contact</a><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup</a></div>
 
-  <section class="ticker">
-    <div><small>01</small><strong>WHISKED FRESH</strong><p>Prepared for each order.</p></div>
-    <div><small>02</small><strong>SMALL BATCH</strong><p>Made in limited quantities.</p></div>
-    <div><small>03</small><strong>SINGAPORE</strong><p>Weekend self collection.</p></div>
-  </section>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-background"><img class="hero-photo" src="assets/Straight-matcha.jpg" alt="Straight matcha by Shizuku Lab"><div class="hero-shade"></div></div>
+      <div class="hero-copy"><p class="kicker reveal">TOA PAYOH · SINGAPORE</p><h1 class="reveal">A quieter way<br><em>to enjoy matcha.</em></h1><p class="hero-intro reveal">Freshly whisked Japanese matcha, prepared slowly and shared with care.</p></div>
+      <div class="scroll-cue"><span>Scroll to begin</span><i></i></div>
+    </section>
 
-  <section class="section menu" id="menu">
-    <div class="heading">
-      <div>
-        <p class="label">THIS WEEK'S MENU</p>
-        <h2>Drinks for<br><i>the moment.</i></h2>
-      </div>
-      <p class="heading-note">A small menu, made with intention.<br>Choose your favourite.</p>
-    </div>
+    <section class="statement-section"><div class="statement-sticky"><p class="chapter-label">01 · PHILOSOPHY</p><div class="statement-lines"><span>In a world that moves quickly,</span><span>we choose to make one cup</span><span>at a time.</span></div></div></section>
 
-    <div class="products">
-      <article class="product">
-        <div class="product-photo photo"><span>01 / MATCHA</span></div>
-        <div class="product-info">
-          <div><h3>Matcha Latte</h3><p>Japanese matcha · oat milk</p></div>
-          <strong>$5.90</strong>
-        </div>
-      </article>
-      <article class="product">
-        <div class="product-photo photo"><span>02 / HOJICHA</span></div>
-        <div class="product-info">
-          <div><h3>Hojicha Latte</h3><p>Roasted hojicha · oat milk</p></div>
-          <strong>$5.90</strong>
-        </div>
-      </article>
-      <article class="product">
-        <div class="product-photo photo featured-photo"><span>03 / ICHIGO</span></div>
-        <div class="product-info">
-          <div><h3>Strawberry Matcha</h3><p>Matcha · strawberry · oat milk</p></div>
-          <strong>$6.90</strong>
-        </div>
-      </article>
-    </div>
+    <section class="story-section section-pad" id="story">
+      <div class="section-index">01</div>
+      <div class="story-visual reveal-photo"><figure class="brand-photo"><img src="assets/Shizuku-duo.jpeg" alt="Shizuku Lab matcha and hojicha drinks"><figcaption>Made one cup at a time.</figcaption></figure></div>
+      <div class="story-copy reveal"><p class="kicker">OUR STORY</p><h2>Made slowly.<br>Shared quietly.</h2><p>Shizuku Lab is a home-based matcha studio in Toa Payoh. It began with a simple belief: good matcha should feel thoughtful, personal and easy to enjoy in everyday life.</p><p>Every cup is prepared only after an order is placed. No rush, no shortcuts—just careful ingredients, a smooth whisk and a quiet moment.</p></div>
+    </section>
 
-    <div class="menu-footer">
-      <p>More drinks can be added here as your menu grows.</p>
-      <a class="text-link" href="#order">View & order <span>↗</span></a>
-    </div>
-  </section>
+    <section class="matcha-section" id="matcha"><div class="matcha-sticky"><div class="powder-stage"><div class="powder-bowl"><div class="powder"></div></div><div class="powder-dust dust-1"></div><div class="powder-dust dust-2"></div><div class="powder-dust dust-3"></div></div><div class="matcha-copy"><p class="kicker light">02 · OUR MATCHA</p><h2>Selected for balance.</h2><p>We use carefully selected Japanese matcha with a fresh green colour, gentle umami and enough body to remain present when paired with oat milk.</p><div class="matcha-notes"><div><span>Origin</span><strong>Japan</strong></div><div><span>Harvest</span><strong>First harvest blend</strong></div><div><span>Cultivar</span><strong>Yabukita-led</strong></div><div><span>Profile</span><strong>Smooth · balanced · clean</strong></div></div></div></div></section>
 
-  <section class="story section" id="story">
-    <div class="photo story-photo"><span>BRAND / PROCESS PHOTO</span></div>
-    <div class="story-copy">
-      <p class="label">ABOUT SHIZUKU LAB</p>
-      <h2>Made for<br><i>matcha moments.</i></h2>
-      <p>Shizuku Lab is a small-batch matcha drink lab in Singapore, created for those little moments when you simply want a good cup of matcha.</p>
-      <p>From creamy matcha lattes to roasted hojicha and seasonal combinations, drinks are made to order in small batches.</p>
-      <div class="mini-fact"><span>SHIZUKU / 雫</span><strong>A little drop.</strong></div>
-    </div>
-  </section>
+    <section class="ritual-section section-pad"><div class="ritual-copy reveal"><div><p class="kicker">03 · THE RITUAL</p><h2>Freshly whisked.<br>Every single time.</h2></div></div><div class="ritual-steps"><article class="ritual-card reveal"><span>01</span><div class="ritual-icon sieve-icon"></div><h3>Sift</h3><p>Matcha is sifted for a finer, smoother texture.</p></article><article class="ritual-card reveal"><span>02</span><div class="ritual-icon water-icon"></div><h3>Whisk</h3><p>Water and tea are whisked until soft foam appears.</p></article><article class="ritual-card reveal"><span>03</span><div class="ritual-icon pour-icon"></div><h3>Pour</h3><p>The finished matcha is layered only when your cup is ready.</p></article></div></section>
 
-  <section class="ingredients section">
-    <div class="ingredients-intro">
-      <p class="label">WHAT'S IN YOUR CUP?</p>
-      <h2>Simple.<br><i>Intentional.</i></h2>
-    </div>
-    <div class="ingredient-list">
-      <div><small>01</small><div><h3>Japanese Matcha</h3><p>Selected matcha for a balanced, vibrant cup.</p></div></div>
-      <div><small>02</small><div><h3>Oat Milk</h3><p>Our default milk for a creamy, smooth finish.</p></div></div>
-      <div><small>03</small><div><h3>Made to Order</h3><p>Whisked fresh when your order is prepared.</p></div></div>
-    </div>
-  </section>
+    <section class="why-section section-pad" id="why"><div class="why-heading reveal"><p class="kicker light">04 · WHY SHIZUKU LAB</p><h2>Care is visible<br>in the smallest details.</h2></div><div class="why-list"><article class="why-item reveal"><span>01</span><h3>Made to order</h3><p>Nothing sits waiting. Each drink begins only after your order is received.</p></article><article class="why-item reveal"><span>02</span><h3>Oat milk by default</h3><p>Chosen for a creamy texture that supports the tea without hiding it.</p></article><article class="why-item reveal"><span>03</span><h3>Small-batch service</h3><p>A focused menu allows more attention to every cup and every customer.</p></article><article class="why-item reveal"><span>04</span><h3>Honest pricing</h3><p>Specialty matcha made approachable for an everyday quiet moment.</p></article></div></section>
 
-  <section class="collection section" id="collection">
-    <div>
-      <p class="label">PICK UP YOUR MATCHA</p>
-      <h2>Your weekend<br><i>ritual.</i></h2>
-      <p class="collection-copy">Pre-order ahead and choose an available collection slot at checkout.</p>
-    </div>
-    <div class="collection-card">
-      <div class="slot"><span>SATURDAY</span><strong>10:00 — 12:00</strong></div>
-      <div class="slot"><span>SUNDAY</span><strong>10:00 — 13:00</strong></div>
-      <div class="collection-details">
-        <span>COLLECTION</span>
-        <strong>Singapore · Self Collection</strong>
-        <p>Available collection details will be shown during checkout.</p>
-      </div>
-    </div>
-  </section>
+    <section class="menu-section" id="menu"><div class="menu-intro section-pad"><p class="kicker reveal">05 · OUR MENU</p><h2 class="reveal">Four cups.<br>Four moods.</h2></div><div class="product-story">
+      <article class="product-panel product-matcha"><div class="product-sticky"><figure class="product-photo"><img src="assets/matcha-latte.jpg" alt="Shizuku Lab Matcha Latte"></figure><div class="product-info"><p class="kicker">SIGNATURE</p><h3>Matcha Latte</h3><p>The cup that started everything. Smooth, creamy and quietly balanced.</p><strong>$5.90</strong></div></div></article>
+      <article class="product-panel product-hojicha"><div class="product-sticky"><figure class="product-photo"><img src="assets/houjicha-latte.jpg" alt="Shizuku Lab Hojicha Latte"></figure><div class="product-info"><p class="kicker">ROASTED</p><h3>Hojicha Latte</h3><p>Soft, nutty and comforting, with a deep roasted finish.</p><strong>$5.90</strong></div></div></article>
+      <article class="product-panel product-ichigo"><div class="product-sticky"><figure class="product-photo"><img src="assets/Ichigo-matcha-latte.jpg" alt="Shizuku Lab Ichigo Matcha Latte"></figure><div class="product-info"><p class="kicker">LAYERED</p><h3>Ichigo Matcha</h3><p>Fresh strawberry sweetness meets the calm bitterness of matcha.</p><strong>$6.90</strong></div></div></article>
+      <article class="product-panel product-fog"><div class="product-sticky"><figure class="product-photo"><img src="assets/Singapore-Fog.jpg" alt="Shizuku Lab Singapore Fog"></figure><div class="product-info"><p class="kicker">LOCAL, REIMAGINED</p><h3>Singapore Fog</h3><p>Teh-O meets freshly whisked creamy matcha in a familiar new form.</p><strong>$6.10</strong></div></div></article>
+    </div><div class="menu-cta section-pad reveal"><p>Ready for a quiet cup?</p><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">View full menu & order <span>↗</span></a></div></section>
 
-  <section class="section faq" id="faq">
-    <div class="heading">
-      <div><p class="label">GOOD TO KNOW</p><h2>FAQ</h2></div>
-      <p class="heading-note">Everything you need<br>before your order.</p>
-    </div>
-    <div class="faq-list">
-      <details><summary>Do you accept walk-ins?</summary><p>Shizuku Lab is currently a pre-order based service. Please place your order online before collection.</p></details>
-      <details><summary>When can I collect?</summary><p>Current collection slots are Saturday 10:00–12:00 and Sunday 10:00–13:00.</p></details>
-      <details><summary>Where is collection?</summary><p>Self-collection is in Singapore. The available collection details are shown during checkout.</p></details>
-      <details><summary>How do I order?</summary><p>Choose your drinks, add them to your order, select a collection slot, and complete checkout.</p></details>
-    </div>
-  </section>
+    <section class="journal-section section-pad"><div class="journal-heading reveal"><p class="kicker">06 · FROM THE LAB</p><h2>A place to keep growing.</h2><p>New drinks, matcha notes and small moments from behind the whisk.</p></div><div class="journal-grid"><article class="journal-card reveal"><div class="journal-image"><img src="assets/Singapore-Fog.jpg" alt="Singapore Fog"></div><span>AUGUST 2026</span><h3>Singapore Fog</h3><p>A familiar local tea, reimagined through matcha.</p></article><article class="journal-card reveal"><div class="journal-image"><img src="assets/Ichigo-houjicha-latte.jpg" alt="Ichigo Hojicha Latte"></div><span>FROM THE LAB</span><h3>Why we whisk to order</h3><p>Fresh texture, softer foam and a cup made only for you.</p></article><article class="journal-card reveal"><div class="journal-image"><img src="assets/Straight-matcha.jpg" alt="Straight matcha"></div><span>MATCHA NOTES</span><h3>Finding balance</h3><p>What we look for when choosing a matcha for milk.</p></article></div></section>
 
-  <section class="order" id="order">
-    <p class="label">READY FOR YOUR MATCHA?</p>
-    <h2>See you<br><i>this weekend.</i></h2>
-    <a class="btn light" href="#" onclick="return connectOrder()">Order now <span>↗</span></a>
-    <p class="order-note">ORDER LINK TO BE CONNECTED TO YOUR EXISTING ORDERING SYSTEM</p>
-  </section>
-</main>
-
-<footer>
-  <div class="logo">SHIZUKU<br><span>LAB</span></div>
-  <div>Matcha · Hojicha · Singapore</div>
-  <div>© 2026 Shizuku Lab</div>
-</footer>
-
-<script>
-function connectOrder() {
-  alert("Your existing Shizuku Lab ordering website will be connected here.");
-  return false;
-}
-</script>
+    <section class="contact-section" id="contact"><div class="contact-inner reveal"><p class="kicker light">07 · CONTACT</p><h2>Meet us in<br>Toa Payoh.</h2><div class="contact-grid"><div><span>Collection</span><p>Weekend pre-order<br>Toa Payoh Lorong 1</p></div><div><span>Instagram</span><a href="https://www.instagram.com/shizukulab.matcha/" target="_blank" rel="noopener">@shizukulab.matcha</a></div><div><span>Orders</span><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup ↗</a></div></div></div></section>
+    <section class="final-section"><div class="final-drop"></div><p>Thank you for slowing down with us.</p><div class="final-logo"><span>雫</span><strong>SHIZUKU LAB</strong></div></section>
+  </main>
+  <footer><span>© 2026 Shizuku Lab</span><span>Made slowly in Singapore.</span></footer>
+  <script src="app.js"></script>
 </body>
 </html>
