@@ -1,17 +1,15 @@
-# Shizuku Lab Website v3.1
+# Shizuku Lab Website — Corrected Build
 
-Updates:
-- Smoother requestAnimationFrame hero scrolling
-- Gentle hero image zoom, parallax and text fade
-- Japanese editorial-style landscape menu imagery
-- Full drink photos are retained instead of being cropped into narrow vertical images
-- Subtle washi-paper texture and ensō-inspired composition
-- Latest Our Matcha copy:
-  Carefully chosen, freshly whisked.
-- Origin: Yame, Fukuoka, Japan
-- Cultivar: Yabukita
-- Tasting notes: Nori · Yuzu zest · Cream
-- Finish: Fruity, gently sweet
-- Includes the latest mobile navigation fix, Japan map, chasen cursor and responsive layout
+This ZIP was patched directly from the v3.1 file uploaded by the user.
 
-Upload all extracted files to the GitHub repository root.
+Verified changes:
+- Hojicha → Houjicha everywhere in visible website content
+- Singapore Fog price: $6.10 → $6.90
+- Replaced chasen-cursor.png with the supplied complete chasen
+- Chasen handle faces upward and whisking ends face downward
+- Removed the old CSS rotation by applying a final verified override
+
+Verification marker:
+<meta name="shizuku-version" content="v3.2-corrected">
+
+Upload every extracted file to the GitHub repository root.

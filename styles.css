@@ -805,3 +805,31 @@ body{
     align-items:flex-start;
   }
 }
+
+
+/* VERIFIED FINAL SETTINGS — 02 Aug 2026 */
+.chasen-cursor{
+  width:28px !important;
+  height:44px !important;
+  transform:translate(-50%,-8%) !important;
+  pointer-events:none !important;
+}
+.chasen-cursor img{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  object-fit:contain !important;
+  transform:none !important;
+  rotate:none !important;
+}
+.chasen-cursor.active img{
+  animation:verifiedChasenWhisk .32s ease !important;
+}
+@keyframes verifiedChasenWhisk{
+  0%,100%{transform:rotate(0deg)}
+  35%{transform:rotate(-6deg)}
+  70%{transform:rotate(6deg)}
+}
+@media(max-width:650px){
+  .chasen-cursor{display:none !important}
+}
