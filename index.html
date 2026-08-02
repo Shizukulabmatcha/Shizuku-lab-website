@@ -26,7 +26,7 @@
 
   <header class="header" id="header">
     <a class="brand" href="#home" aria-label="Shizuku Lab home">
-      <img src="logo-transparent.png" alt="Shizuku Lab">
+      <img id="headerLogo" src="logo-transparent.png" alt="Shizuku Lab">
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">
       <a href="#story" data-main-nav="story">Our Story</a>
@@ -48,12 +48,12 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-media"><img src="Straight-matcha.jpg" alt="Straight matcha by Shizuku Lab"></div>
+      <div class="hero-media"><img id="heroImage" src="Straight-matcha.jpg" alt="Straight matcha by Shizuku Lab"></div>
       <div class="hero-shade"></div>
       <div class="hero-copy">
-        <p class="eyebrow reveal">TOA PAYOH · SINGAPORE</p>
-        <h1 class="reveal">Made slowly.<br><em>Shared quietly.</em></h1>
-        <p class="hero-body reveal">Freshly whisked Japanese matcha, prepared one cup at a time.</p>
+        <p class="eyebrow reveal" id="heroEyebrow">TOA PAYOH · SINGAPORE</p>
+        <h1 class="reveal" id="heroTitle"><span>Made slowly.</span><br><em>Shared quietly.</em></h1>
+        <p class="hero-body reveal" id="heroBody">Freshly whisked Japanese matcha, prepared one cup at a time.</p>
       </div>
       <a class="scroll-cue" href="#philosophy"><span>Scroll to discover</span><i></i></a>
     </section>
@@ -68,27 +68,27 @@
     </section>
 
     <section class="story section" id="story">
-      <div class="story-photo image-reveal"><img src="Shizuku-duo.jpeg" alt="Shizuku Lab matcha and houjicha drinks"></div>
+      <div class="story-photo image-reveal"><img id="storyImage" src="Shizuku-duo.jpeg" alt="Shizuku Lab matcha and houjicha drinks"></div>
       <div class="story-copy reveal">
         <p class="eyebrow">OUR STORY</p>
-        <h2>A small studio,<br>a thoughtful cup.</h2>
-        <p>Shizuku Lab is a home-based matcha studio in Toa Payoh. It started from a simple wish: to make good matcha feel personal, approachable and cared for.</p>
-        <p>Every drink is prepared after an order is placed. No rush, no shortcuts—just carefully selected tea, a smooth whisk and a little more attention.</p>
+        <h2 id="storyTitle">A small studio,<br>a thoughtful cup.</h2>
+        <p id="storyP1">Shizuku Lab is a home-based matcha studio in Toa Payoh. It started from a simple wish: to make good matcha feel personal, approachable and cared for.</p>
+        <p id="storyP2">Every drink is prepared after an order is placed. No rush, no shortcuts—just carefully selected tea, a smooth whisk and a little more attention.</p>
       </div>
     </section>
 
     <section class="matcha" id="matcha">
       <div class="matcha-sticky">
-        <div class="matcha-photo"><img src="Straight-matcha.jpg" alt="Straight Japanese matcha"></div>
+        <div class="matcha-photo"><img id="matchaImage" src="Straight-matcha.jpg" alt="Straight Japanese matcha"></div>
         <div class="matcha-copy">
           <p class="eyebrow light">02 · OUR MATCHA</p>
-          <h2>Carefully chosen,<br>freshly whisked.</h2>
-          <p>Our matcha is carefully selected from Yame, Fukuoka, Japan, for its vibrant colour, balanced character and smooth finish. Every cup is whisked fresh only after an order is placed, so you experience matcha at its best.</p>
+          <h2 id="matchaTitle">Carefully chosen,<br>freshly whisked.</h2>
+          <p id="matchaBody">Our matcha is carefully selected from Yame, Fukuoka, Japan, for its vibrant colour, balanced character and smooth finish. Every cup is whisked fresh only after an order is placed, so you experience matcha at its best.</p>
           <dl>
-            <div><dt>Origin</dt><dd>Yame, Fukuoka, Japan</dd></div>
-            <div><dt>Harvest</dt><dd>First harvest</dd></div>
-            <div><dt>Cultivar</dt><dd>Yabukita</dd></div>
-            <div class="tasting-row"><dt>Tasting notes</dt><dd><strong>Nori · Yuzu zest · Cream</strong><small>Finish: Fruity, gently sweet.</small></dd></div>
+            <div><dt>Origin</dt><dd id="matchaOrigin">Yame, Fukuoka, Japan</dd></div>
+            <div><dt>Harvest</dt><dd id="matchaHarvest">First harvest</dd></div>
+            <div><dt>Cultivar</dt><dd id="matchaCultivar">Yabukita</dd></div>
+            <div class="tasting-row"><dt>Tasting notes</dt><dd><strong id="matchaNotes">Nori · Yuzu zest · Cream</strong><small id="matchaFinish">Finish: Fruity, gently sweet.</small></dd></div>
           </dl>
         </div>
       </div>
@@ -176,16 +176,16 @@
     <section class="menu" id="menu">
       <div class="menu-heading section reveal"><p class="eyebrow">05 · OUR MENU</p><h2>One cup.<br>One mood.</h2></div>
 
-      <article class="product product-green">
+      <article data-menu-index="0" class="product product-green">
         <div class="product-sticky"><div class="product-image"><img src="menu-matcha-latte.jpg" alt="Matcha Latte presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">SIGNATURE</p><h3>Matcha Latte</h3><p>The cup that started everything. Smooth, creamy and quietly balanced.</p><strong>$5.90</strong></div></div>
       </article>
-      <article class="product product-sand">
+      <article data-menu-index="1" class="product product-sand">
         <div class="product-sticky"><div class="product-image"><img src="menu-houjicha-latte.jpg" alt="Houjicha Latte presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">ROASTED</p><h3>Houjicha Latte</h3><p>Soft, nutty and comforting, with a deep roasted finish.</p><strong>$5.90</strong></div></div>
       </article>
-      <article class="product product-pink">
+      <article data-menu-index="2" class="product product-pink">
         <div class="product-sticky"><div class="product-image"><img src="menu-ichigo-matcha.jpg" alt="Ichigo Matcha presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">LAYERED</p><h3>Ichigo Matcha</h3><p>Fresh strawberry sweetness meets the calm bitterness of matcha.</p><strong>$6.90</strong></div></div>
       </article>
-      <article class="product product-stone">
+      <article data-menu-index="3" class="product product-stone">
         <div class="product-sticky"><div class="product-image"><img src="menu-singapore-fog.jpg" alt="Singapore Fog presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">LOCAL, REIMAGINED</p><h3>Singapore Fog</h3><p>Teh-O meets freshly whisked creamy matcha in a familiar new form.</p><strong>$6.90</strong></div></div>
       </article>
 
@@ -195,27 +195,29 @@
     <section class="journal section">
       <div class="journal-head reveal"><p class="eyebrow">06 · FROM THE LAB</p><h2>Small updates,<br>kept with care.</h2><p>A quiet place for new drinks, matcha notes and moments behind the whisk.</p></div>
       <div class="journal-grid">
-        <article class="reveal"><img src="Ichigo-houjicha-latte.jpg" alt="Ichigo Houjicha Latte"><small>AUGUST 2026</small><h3>Ichigo Houjicha</h3><p>Roasted tea and strawberry, layered one cup at a time.</p></article>
-        <article class="reveal"><img src="Lemonade-matcha-soda.jpg" alt="Lemonade Matcha Soda"><small>FROM THE LAB</small><h3>A brighter pour</h3><p>Matcha, citrus and sparkling refreshment for warmer days.</p></article>
-        <article class="reveal"><img src="matcha-yakult.jpg" alt="Matcha Yakult"><small>MATCHA NOTES</small><h3>Playful balance</h3><p>Finding the point where familiar sweetness still lets matcha speak.</p></article>
+        <article data-update-index="0" class="reveal"><img src="Ichigo-houjicha-latte.jpg" alt="Ichigo Houjicha Latte"><small>AUGUST 2026</small><h3>Ichigo Houjicha</h3><p>Roasted tea and strawberry, layered one cup at a time.</p></article>
+        <article data-update-index="1" class="reveal"><img src="Lemonade-matcha-soda.jpg" alt="Lemonade Matcha Soda"><small>FROM THE LAB</small><h3>A brighter pour</h3><p>Matcha, citrus and sparkling refreshment for warmer days.</p></article>
+        <article data-update-index="2" class="reveal"><img src="matcha-yakult.jpg" alt="Matcha Yakult"><small>MATCHA NOTES</small><h3>Playful balance</h3><p>Finding the point where familiar sweetness still lets matcha speak.</p></article>
       </div>
     </section>
 
     <section class="contact" id="contact">
       <div class="contact-inner reveal">
-        <p class="eyebrow light">07 · CONTACT</p><h2>Meet us in<br>Toa Payoh.</h2>
+        <p class="eyebrow light">07 · CONTACT</p><h2 id="contactTitle">Meet us in<br>Toa Payoh.</h2>
         <div class="contact-grid">
-          <div><span>Collection</span><p>Weekend pre-order<br>Toa Payoh Lorong 1</p></div>
-          <div><span>Instagram</span><a href="https://www.instagram.com/shizukulab.matcha/" target="_blank" rel="noopener">@shizukulab.matcha</a></div>
+          <div><span>Collection</span><p id="contactCollection">Weekend pre-order<br>Toa Payoh Lorong 1</p></div>
+          <div><span>Instagram</span><a href="https://www.instagram.com/shizukulab.matcha/" target="_blank" rel="noopener" id="contactInstagram">@shizukulab.matcha</a></div>
           <div><span>Orders</span><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup ↗</a></div>
         </div>
       </div>
     </section>
 
-    <section class="closing"><img src="logo-transparent.png" alt="Shizuku Lab"><p>Thank you for slowing down with us.</p><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup</a></section>
+    <section class="closing"><img id="closingLogo" src="logo-transparent.png" alt="Shizuku Lab"><p id="closingMessage">Thank you for slowing down with us.</p><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup</a></section>
   </main>
 
   <footer><span>© 2026 SHIZUKU LAB</span><span>MADE SLOWLY IN SINGAPORE</span></footer>
+  <script src="site-data.js"></script>
+  <script src="site-render.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
