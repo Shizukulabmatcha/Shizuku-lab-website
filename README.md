@@ -1,30 +1,17 @@
-# Project SHIZUKU
+# Shizuku Lab Website v3.1
 
-Premium standalone brand website for Shizuku Lab.
+Updates:
+- Smoother requestAnimationFrame hero scrolling
+- Gentle hero image zoom, parallax and text fade
+- Japanese editorial-style landscape menu imagery
+- Full drink photos are retained instead of being cropped into narrow vertical images
+- Subtle washi-paper texture and ensō-inspired composition
+- Latest Our Matcha copy:
+  Carefully chosen, freshly whisked.
+- Origin: Yame, Fukuoka, Japan
+- Cultivar: Yabukita
+- Tasting notes: Nori · Yuzu zest · Cream
+- Finish: Fruity, gently sweet
+- Includes the latest mobile navigation fix, Japan map, chasen cursor and responsive layout
 
-## Included
-- Apple-inspired scroll storytelling
-- water-drop loading animation
-- custom chasen cursor on desktop
-- click ripple interaction
-- sticky full-screen sections
-- About, Matcha, Ritual, Why Us, Menu, Journal and Contact
-- mobile responsive navigation
-- direct links to the existing ordering platform
-
-## Deploy
-1. Create a new GitHub repository named `Shizuku-lab-website`.
-2. Upload all files from this folder.
-3. Import the repository into Vercel.
-4. Choose Framework Preset: `Other`.
-5. Leave Build Command and Output Directory empty.
-6. Deploy.
-
-The ordering buttons already link to:
-https://shizuku-lab-order.vercel.app
-
-The first version uses built-in visual placeholders. Replace them later with your own matcha, whisking and drink photos.
-
-
-## v1 photography update
-This package includes the Shizuku Lab product photos supplied in August 2026. The hero, product showcase and journal now use real brand photography.
+Upload all extracted files to the GitHub repository root.

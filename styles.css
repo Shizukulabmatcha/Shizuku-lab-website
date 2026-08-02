@@ -291,3 +291,517 @@ html.custom-cursor-ready button{cursor:none!important}
 .image-fallback span::before{
   content:"Image unavailable · ";
 }
+
+
+/* v2.7 — real map, clickable cultivar chips, corrected brand details */
+.brand img{
+  width:220px !important;
+  height:112px !important;
+  max-width:none !important;
+  object-fit:contain !important;
+  object-position:left center !important;
+}
+.header.scrolled .brand img{
+  width:190px !important;
+  height:92px !important;
+}
+
+.chasen-cursor{
+  width:26px !important;
+  height:34px !important;
+  transform:translate(-50%,-10%) !important;
+}
+.chasen-cursor img{
+  transform:rotate(180deg) !important;
+  transform-origin:center !important;
+}
+.chasen-cursor.active{
+  width:30px !important;
+  height:39px !important;
+}
+.chasen-cursor.active img{
+  animation:chasenDownWhisk .34s ease !important;
+}
+@keyframes chasenDownWhisk{
+  0%,100%{transform:rotate(180deg)}
+  35%{transform:rotate(172deg)}
+  70%{transform:rotate(188deg)}
+}
+
+.japan-map{
+  position:relative;
+  min-height:620px;
+  background:#edf1e8 !important;
+  border-radius:28px !important;
+  overflow:hidden;
+}
+.japan-map::before{
+  display:none !important;
+  content:none !important;
+}
+.japan-map-outline{
+  position:absolute;
+  inset:4% 5%;
+  width:90%;
+  height:92%;
+  object-fit:contain;
+  opacity:.72;
+  filter:sepia(.08) saturate(.72);
+}
+
+.map-pin[data-region="saitama"]{left:68%;top:39%}
+.map-pin[data-region="shizuoka"]{left:60%;top:51%}
+.map-pin[data-region="aichi"]{left:51%;top:54%}
+.map-pin[data-region="kyoto"]{left:43%;top:51%}
+.map-pin[data-region="mie"]{left:48%;top:58%}
+.map-pin[data-region="fukuoka"]{left:25%;top:67%}
+.map-pin[data-region="saga"]{left:21%;top:69%}
+.map-pin[data-region="kagoshima"]{left:19%;top:81%}
+
+.region-tags button{
+  appearance:none;
+  font:inherit;
+  color:var(--ink);
+  background:transparent;
+  border:1px solid var(--line);
+  padding:12px 16px;
+  cursor:pointer !important;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.region-tags button:hover,
+.region-tags button:focus-visible{
+  background:#dfe8d3;
+  border-color:#a7ba94;
+  transform:translateY(-1px);
+}
+.cultivar-highlight{
+  outline:3px solid #a7ba74;
+  outline-offset:5px;
+  transition:outline-color .3s ease;
+}
+html.custom-cursor-ready .region-tags button{
+  cursor:none !important;
+}
+
+@media(max-width:950px){
+  .brand img{
+    width:170px !important;
+    height:88px !important;
+  }
+  .japan-map{min-height:540px}
+}
+@media(max-width:650px){
+  .brand img{
+    width:145px !important;
+    height:76px !important;
+  }
+  .header.scrolled .brand img{
+    width:130px !important;
+    height:68px !important;
+  }
+  .japan-map{
+    min-height:500px;
+    border-radius:22px !important;
+  }
+}
+
+/* v2.8 — Shizuku Lab's real matcha colour study */
+.colour-study-hero{
+  margin:28px 0 52px;
+}
+.colour-study-hero img{
+  width:100%;
+  display:block;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:24px;
+}
+.colour-study-hero figcaption{
+  margin-top:13px;
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.cultivar-study-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:28px;
+}
+.cultivar-study-card{
+  background:#f3eee5;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.cultivar-study-card figure{
+  margin:0;
+  height:390px;
+  background:#ece7dc;
+}
+.cultivar-study-card figure img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.cultivar-study-copy{
+  padding:28px;
+}
+.cultivar-study-copy h3{
+  font:clamp(34px,3.2vw,52px)/1 var(--serif);
+  margin:8px 0 14px;
+}
+.cultivar-study-copy>p:last-of-type{
+  color:var(--muted);
+  line-height:1.65;
+}
+.cultivar-note-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:20px;
+}
+.cultivar-note-row span{
+  border:1px solid var(--line);
+  padding:9px 11px;
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+@media(max-width:700px){
+  .cultivar-study-grid{grid-template-columns:1fr}
+  .cultivar-study-card figure{height:330px}
+  .colour-study-hero img{aspect-ratio:4/3}
+}
+
+
+/* v2.9 — Yame origin, mobile matcha profile, stone-grinding visual */
+.grinding-hero{margin:28px 0 42px}
+.grinding-hero img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+  border-radius:24px
+}
+.grinding-hero figcaption{
+  margin-top:10px;
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted)
+}
+.grinding-compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin:38px 0
+}
+.grinding-compare section{
+  padding:28px;
+  background:#f2ede4;
+  border:1px solid var(--line)
+}
+.grinding-compare section>span{
+  font-size:10px;
+  letter-spacing:.16em;
+  color:var(--forest)
+}
+.grinding-compare h3{font-size:34px;margin:12px 0 16px}
+.grinding-compare p{color:var(--muted);line-height:1.65}
+.grinding-compare ul{
+  margin:18px 0 0;
+  padding-left:18px;
+  color:var(--muted);
+  line-height:1.8
+}
+
+@media(max-width:650px){
+  .matcha{
+    height:auto!important;
+    min-height:0!important
+  }
+  .matcha-sticky{
+    position:relative!important;
+    top:auto!important;
+    height:auto!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:28px!important;
+    padding:88px 20px 42px!important;
+    overflow:visible!important
+  }
+  .matcha-photo{
+    width:100%!important;
+    height:auto!important;
+    aspect-ratio:1/1!important;
+    transform:none!important
+  }
+  .matcha-photo img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important
+  }
+  .matcha-copy{
+    width:100%!important;
+    padding-bottom:0!important
+  }
+  .matcha-copy h2{
+    font-size:54px!important;
+    line-height:.98!important
+  }
+  .matcha-copy>p:not(.eyebrow){
+    margin:24px 0 26px!important;
+    line-height:1.7!important
+  }
+  .matcha-copy dl{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:0!important;
+    margin-top:4px!important
+  }
+  .matcha-copy dl div{
+    display:block!important;
+    padding:16px 12px 16px 0!important;
+    min-height:86px!important
+  }
+  .matcha-copy dl div:nth-child(even){
+    padding-left:14px!important;
+    border-left:1px solid rgba(255,255,255,.18)!important
+  }
+  .matcha-copy dt{
+    display:block!important;
+    margin-bottom:8px!important
+  }
+  .matcha-copy dd{
+    font-size:12px!important;
+    line-height:1.45!important
+  }
+
+  .grinding-hero img{
+    aspect-ratio:4/3;
+    border-radius:18px
+  }
+  .grinding-compare{grid-template-columns:1fr}
+}
+
+
+/* v3.0 navigation-state fix */
+html,body{
+  overscroll-behavior-y:auto;
+}
+body{
+  min-height:100%;
+}
+.library-overlay{
+  touch-action:manipulation;
+}
+@media(max-width:650px){
+  .library-drawer{
+    overflow:hidden !important;
+  }
+  .library-workspace{
+    height:100svh !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+  }
+  .library-sidebar{
+    position:relative !important;
+    height:auto !important;
+    overflow:visible !important;
+  }
+  .library-content-panel{
+    height:auto !important;
+    min-height:auto !important;
+    overflow:visible !important;
+  }
+  .library-close{
+    position:fixed !important;
+    top:calc(env(safe-area-inset-top) + 14px) !important;
+    right:16px !important;
+  }
+  .mobile-menu,
+  .header,
+  .library-drawer{
+    will-change:transform;
+  }
+}
+
+
+/* v3.1 — smoother hero and Japanese editorial menu presentation */
+.hero-media,
+.hero-media img,
+.hero-copy,
+.scroll-cue{
+  will-change:transform,opacity;
+}
+.hero-media img{
+  transform:scale(1.025);
+  transition:none !important;
+  backface-visibility:hidden;
+}
+.hero-copy{
+  transform:none;
+}
+.scroll-cue{
+  transition:opacity .18s linear;
+}
+
+.matcha-copy .tasting-row dd{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:5px;
+}
+.matcha-copy .tasting-row dd strong{
+  font-size:13px;
+  font-weight:500;
+}
+.matcha-copy .tasting-row dd small{
+  color:#abb9af;
+  font-size:10px;
+}
+
+/* Menu becomes an editorial landscape composition instead of a narrow crop */
+.product{
+  height:145vh;
+}
+.product-sticky{
+  grid-template-columns:minmax(0,1.18fr) minmax(340px,.82fr);
+  gap:6vw;
+  padding:82px 6vw;
+}
+.product-image{
+  width:100%;
+  height:auto;
+  max-height:none;
+  aspect-ratio:4/3;
+  justify-self:stretch;
+  box-shadow:none;
+  overflow:hidden;
+  border:1px solid rgba(20,59,43,.10);
+  background:#ede7db;
+}
+.product-image img{
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  transition:transform 1.15s cubic-bezier(.16,1,.3,1);
+}
+.product-image:hover img{
+  transform:scale(1.018);
+}
+.product-copy{
+  padding:38px 0;
+}
+.product-copy:before{
+  content:"";
+  display:block;
+  width:42px;
+  height:1px;
+  margin-bottom:38px;
+  background:var(--forest);
+  opacity:.65;
+}
+.product-copy h3{
+  max-width:660px;
+}
+.product-copy strong{
+  display:inline-block;
+  margin-top:24px;
+  padding-top:15px;
+  min-width:105px;
+  border-top:1px solid rgba(20,59,43,.25);
+}
+.product-green{
+  background:#dfe8d2;
+}
+.product-sand{
+  background:#eadfce;
+}
+.product-pink{
+  background:#eededc;
+}
+.product-stone{
+  background:#dce3d8;
+}
+
+/* Subtle paper grain without external image */
+.product-sticky:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.12;
+  background-image:
+    radial-gradient(rgba(20,59,43,.16) .45px,transparent .55px),
+    radial-gradient(rgba(255,255,255,.72) .5px,transparent .6px);
+  background-position:0 0,3px 4px;
+  background-size:7px 7px,9px 9px;
+  mix-blend-mode:multiply;
+}
+.product-image,
+.product-copy{
+  position:relative;
+  z-index:1;
+}
+
+@media(max-width:950px){
+  .product{
+    height:auto;
+    min-height:0;
+  }
+  .product-sticky{
+    position:relative;
+    top:auto;
+    height:auto;
+    min-height:100svh;
+    grid-template-columns:1fr;
+    align-content:center;
+    gap:38px;
+    padding:100px 7vw 86px;
+  }
+  .product-image{
+    width:min(100%,820px);
+    justify-self:center;
+  }
+  .product-copy{
+    max-width:760px;
+    padding:0;
+  }
+}
+
+@media(max-width:650px){
+  .hero-media img{
+    object-position:58% center;
+  }
+  .product-sticky{
+    min-height:auto;
+    padding:84px 20px 72px;
+    gap:34px;
+  }
+  .product-image{
+    aspect-ratio:4/3;
+    width:100%;
+  }
+  .product-copy:before{
+    margin-bottom:26px;
+  }
+  .product-copy h3{
+    font-size:52px;
+  }
+  .product-copy>p:not(.eyebrow){
+    max-width:100%;
+    font-size:15px;
+    line-height:1.7;
+  }
+  .matcha-copy .tasting-row{
+    grid-column:1/-1;
+  }
+  .matcha-copy .tasting-row dd{
+    align-items:flex-start;
+  }
+}

@@ -28,20 +28,20 @@
       <img src="logo-transparent.png" alt="Shizuku Lab">
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#story">Our Story</a>
-      <a href="#matcha">Our Matcha</a>
-      <a href="#why">Why Us</a>
-      <a href="#library">Matcha Library</a>
-      <a href="#menu">Menu</a>
-      <a href="#contact">Contact</a>
+      <a href="#story" data-main-nav="story">Our Story</a>
+      <a href="#matcha" data-main-nav="matcha">Our Matcha</a>
+      <a href="#why" data-main-nav="why">Why Us</a>
+      <a href="#library" data-library-nav="true">Matcha Library</a>
+      <a href="#menu" data-main-nav="menu">Menu</a>
+      <a href="#contact" data-main-nav="contact">Contact</a>
     </nav>
     <a class="reserve-link" href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#story">Our Story</a><a href="#matcha">Our Matcha</a><a href="#why">Why Us</a>
-    <a href="#library">Matcha Library</a><a href="#menu">Menu</a><a href="#contact">Contact</a>
+    <a href="#story" data-main-nav="story">Our Story</a><a href="#matcha" data-main-nav="matcha">Our Matcha</a><a href="#why" data-main-nav="why">Why Us</a>
+    <a href="#library" data-library-nav="true">Matcha Library</a><a href="#menu" data-main-nav="menu">Menu</a><a href="#contact" data-main-nav="contact">Contact</a>
     <a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">Reserve your cup ↗</a>
   </div>
 
@@ -81,13 +81,13 @@
         <div class="matcha-photo"><img src="Straight-matcha.jpg" alt="Straight Japanese matcha"></div>
         <div class="matcha-copy">
           <p class="eyebrow light">02 · OUR MATCHA</p>
-          <h2>Selected for<br>balance.</h2>
-          <p>We use Japanese matcha chosen for a vivid green colour, gentle umami and a clean finish that remains present when paired with oat milk.</p>
+          <h2>Carefully chosen,<br>freshly whisked.</h2>
+          <p>Our matcha is carefully selected from Yame, Fukuoka, Japan, for its vibrant colour, balanced character and smooth finish. Every cup is whisked fresh only after an order is placed, so you experience matcha at its best.</p>
           <dl>
-            <div><dt>Origin</dt><dd>Japan</dd></div>
-            <div><dt>Harvest</dt><dd>First-harvest blend</dd></div>
-            <div><dt>Cultivar</dt><dd>Yabukita-led</dd></div>
-            <div><dt>Profile</dt><dd>Smooth · balanced · clean</dd></div>
+            <div><dt>Origin</dt><dd>Yame, Fukuoka, Japan</dd></div>
+            <div><dt>Harvest</dt><dd>First harvest</dd></div>
+            <div><dt>Cultivar</dt><dd>Yabukita</dd></div>
+            <div class="tasting-row"><dt>Tasting notes</dt><dd><strong>Nori · Yuzu zest · Cream</strong><small>Finish: Fruity, gently sweet.</small></dd></div>
           </dl>
         </div>
       </div>
@@ -176,16 +176,16 @@
       <div class="menu-heading section reveal"><p class="eyebrow">05 · OUR MENU</p><h2>One cup.<br>One mood.</h2></div>
 
       <article class="product product-green">
-        <div class="product-sticky"><div class="product-image"><img src="matcha-latte.jpg" alt="Matcha Latte"></div><div class="product-copy"><p class="eyebrow">SIGNATURE</p><h3>Matcha Latte</h3><p>The cup that started everything. Smooth, creamy and quietly balanced.</p><strong>$5.90</strong></div></div>
+        <div class="product-sticky"><div class="product-image"><img src="menu-matcha-latte.jpg" alt="Matcha Latte presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">SIGNATURE</p><h3>Matcha Latte</h3><p>The cup that started everything. Smooth, creamy and quietly balanced.</p><strong>$5.90</strong></div></div>
       </article>
       <article class="product product-sand">
-        <div class="product-sticky"><div class="product-image"><img src="houjicha-latte.jpg" alt="Hojicha Latte"></div><div class="product-copy"><p class="eyebrow">ROASTED</p><h3>Hojicha Latte</h3><p>Soft, nutty and comforting, with a deep roasted finish.</p><strong>$5.90</strong></div></div>
+        <div class="product-sticky"><div class="product-image"><img src="menu-houjicha-latte.jpg" alt="Hojicha Latte presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">ROASTED</p><h3>Hojicha Latte</h3><p>Soft, nutty and comforting, with a deep roasted finish.</p><strong>$5.90</strong></div></div>
       </article>
       <article class="product product-pink">
-        <div class="product-sticky"><div class="product-image"><img src="Ichigo-matcha-latte.jpg" alt="Ichigo Matcha Latte"></div><div class="product-copy"><p class="eyebrow">LAYERED</p><h3>Ichigo Matcha</h3><p>Fresh strawberry sweetness meets the calm bitterness of matcha.</p><strong>$6.90</strong></div></div>
+        <div class="product-sticky"><div class="product-image"><img src="menu-ichigo-matcha.jpg" alt="Ichigo Matcha presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">LAYERED</p><h3>Ichigo Matcha</h3><p>Fresh strawberry sweetness meets the calm bitterness of matcha.</p><strong>$6.90</strong></div></div>
       </article>
       <article class="product product-stone">
-        <div class="product-sticky"><div class="product-image"><img src="Singapore-Fog.jpg" alt="Singapore Fog"></div><div class="product-copy"><p class="eyebrow">LOCAL, REIMAGINED</p><h3>Singapore Fog</h3><p>Teh-O meets freshly whisked creamy matcha in a familiar new form.</p><strong>$6.10</strong></div></div>
+        <div class="product-sticky"><div class="product-image"><img src="menu-singapore-fog.jpg" alt="Singapore Fog presented in a Japanese editorial frame"></div><div class="product-copy"><p class="eyebrow">LOCAL, REIMAGINED</p><h3>Singapore Fog</h3><p>Teh-O meets freshly whisked creamy matcha in a familiar new form.</p><strong>$6.10</strong></div></div>
       </article>
 
       <div class="menu-cta section reveal"><p>See everything we make.</p><a href="https://shizuku-lab-order.vercel.app" target="_blank" rel="noopener">View full menu & order <span>↗</span></a></div>
