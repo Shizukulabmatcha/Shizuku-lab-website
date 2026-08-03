@@ -17,22 +17,17 @@ button,input,textarea,select{font:inherit}.app{min-height:100vh;display:grid;gri
 </head>
 <body>
 <div class="app">
-<aside class="sidebar"><h1>Shizuku Lab</h1><p>Website Admin · v1</p><div class="nav" id="nav"></div></aside>
+<aside class="sidebar"><h1>Shizuku Lab</h1><p>Website Admin · v2</p><div class="nav" id="nav"></div></aside>
 <main class="editor">
 <div class="notice">Changes preview immediately. Click <b>Export site-data.js</b>, then upload that one file to GitHub to publish.</div>
 <div id="panels"></div>
 <div class="actions"><button id="reset">Reset preview</button><button id="save" class="primary">Save preview</button><button id="export">Export site-data.js</button></div>
 </main>
-<section class="preview"><div class="previewbar"><b>Live Preview</b><div class="devices"><button data-device="desktop" class="active">Desktop</button><button data-device="tablet">Tablet</button><button data-device="mobile">Mobile</button></div></div><div class="framewrap" id="framewrap"><iframe id="previewFrame" src="index.html"></iframe></div></section>
+<section class="preview"><div class="previewbar"><b>Live Preview</b><div class="devices"><button data-device="desktop" class="active">Desktop</button><button data-device="mobile">Mobile</button></div></div><div class="framewrap" id="framewrap"><iframe id="previewFrame" src="index.html"></iframe></div></section>
 </div>
 <script src="site-data.js"></script>
-<script>
-const cloneData=value=>JSON.parse(JSON.stringify(value));
-if(!window.SHIZUKU_DATA){
- document.getElementById('panels').innerHTML='<div class="group" style="margin-top:16px;color:#8b2525"><h3>Website data could not be loaded</h3><p>Please make sure <b>site-data.js</b> is beside <b>admin.html</b>, then refresh this page.</p></div>';
- throw new Error('site-data.js did not create window.SHIZUKU_DATA');
-}
-const original=cloneData(window.SHIZUKU_DATA);let data=cloneData(original);
+<script type="text/plain" id="old-admin-code">
+const original=structuredClone(window.SHIZUKU_DATA);let data=structuredClone(original);
 const sections=[
  ['Brand & Logo','brand'],['Hero','hero'],['Our Story','story'],['Our Matcha','matcha'],['Matcha Library','library'],['Japan Atlas','atlas'],['Menu','menu'],['Small Updates','updates'],['Contact','contact'],['Closing','closing']
 ];
@@ -61,8 +56,9 @@ makePanels();
 nav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('.nav button,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelector(`.panel[data-panel="${b.dataset.panel}"]`)?.classList.add('active')});
 panels.addEventListener('input',e=>{if(!e.target.dataset.path)return;set(e.target.dataset.path,e.target.value);preview()});
 document.getElementById('save').onclick=()=>{localStorage.setItem('shizuku-admin-preview',JSON.stringify(data));preview();alert('Preview saved on this device.')};
-document.getElementById('reset').onclick=()=>{data=cloneData(original);localStorage.removeItem('shizuku-admin-preview');frame.contentWindow.postMessage({type:'SHIZUKU_CLEAR_PREVIEW'},'*');makePanels()};
+document.getElementById('reset').onclick=()=>{data=structuredClone(original);localStorage.removeItem('shizuku-admin-preview');frame.contentWindow.postMessage({type:'SHIZUKU_CLEAR_PREVIEW'},'*');makePanels()};
 document.getElementById('export').onclick=()=>{const blob=new Blob(['window.SHIZUKU_DATA = '+JSON.stringify(data,null,2)+';\\n'],{type:'text/javascript'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='site-data.js';a.click();URL.revokeObjectURL(a.href)};
 document.querySelector('.devices').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('.devices button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('framewrap').className='framewrap '+(b.dataset.device==='desktop'?'':b.dataset.device)};
 </script>
+<script src="admin.js"></script>
 </body></html>

@@ -25,11 +25,19 @@
     document.documentElement.style.setProperty('--hero-title-mobile', `${d.hero.fontSizeMobile}px`);
     document.querySelector('.hero-copy')?.setAttribute('data-align',d.hero.align);
 
+    if(d.philosophy){ setText('philosophyLine1',d.philosophy.line1); setText('philosophyLine2',d.philosophy.line2); setText('philosophyLine3',d.philosophy.line3); }
+
     setHTML('storyTitle',d.story.title); setText('storyP1',d.story.paragraph1); setText('storyP2',d.story.paragraph2); setImg('storyImage',d.story.image);
     setHTML('matchaTitle',d.matcha.title); setText('matchaBody',d.matcha.body); setImg('matchaImage',d.matcha.image);
     const mi=document.getElementById('matchaImage'); if(mi) mi.style.objectFit=d.matcha.imageFit || 'contain';
     setText('matchaOrigin',d.matcha.origin); setText('matchaHarvest',d.matcha.harvest); setText('matchaCultivar',d.matcha.cultivar);
     setText('matchaNotes',d.matcha.tastingNotes); setText('matchaFinish',`Finish: ${d.matcha.finish}`);
+
+    if(d.why){
+      setHTML('whyTitle',d.why.title);
+      document.querySelectorAll('[data-why-index]').forEach((card,i)=>{const item=d.why.items?.[i];if(!item)return;const title=card.querySelector('h3'),body=card.querySelector('p');if(title)title.textContent=item.title;if(body)body.textContent=item.body;});
+    }
+    if(d.library){ setHTML('libraryIntroTitle',d.library.introTitle); setText('libraryIntroBody',d.library.introBody); }
 
     document.querySelectorAll('[data-menu-index]').forEach((card,i)=>{
       const item=d.menu[i]; if(!item)return;

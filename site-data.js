@@ -17,6 +17,20 @@ window.SHIZUKU_DATA = {
     "fontSizeMobile": 58,
     "align": "left"
   },
+  "philosophy": {
+    "line1": "In a world that moves quickly,",
+    "line2": "we choose to make",
+    "line3": "one cup at a time."
+  },
+  "why": {
+    "title": "Care lives in\nthe details.",
+    "items": [
+      { "title": "Freshly whisked", "body": "Each cup begins only after your order is received." },
+      { "title": "Oat milk by default", "body": "A creamy pairing selected to support—not hide—the tea." },
+      { "title": "Small batch", "body": "A focused menu gives us more time for every cup." },
+      { "title": "Made with intention", "body": "From the whisk to the handover, nothing is treated as an afterthought." }
+    ]
+  },
   "story": {
     "eyebrow": "OUR STORY",
     "title": "A small studio,\na thoughtful cup.",
