@@ -1,15 +1,22 @@
-# Shizuku Lab Website — Corrected Build
+# Shizuku Lab Website Admin v1
 
-This ZIP was patched directly from the v3.1 file uploaded by the user.
+Open:
+- index.html — public website
+- admin.html — website editor
 
-Verified changes:
-- Hojicha → Houjicha everywhere in visible website content
-- Singapore Fog price: $6.10 → $6.90
-- Replaced chasen-cursor.png with the supplied complete chasen
-- Chasen handle faces upward and whisking ends face downward
-- Removed the old CSS rotation by applying a final verified override
+Workflow:
+1. Open admin.html through your Vercel website: /admin.html
+2. Edit content and preview it live.
+3. Click “Export site-data.js”.
+4. Upload the downloaded site-data.js to your GitHub repository root.
+5. Vercel redeploys the public website.
 
-Verification marker:
-<meta name="shizuku-version" content="v3.2-corrected">
+Included fixes:
+- Our Matcha image uses contain, so the cup is not cropped.
+- Origin, Harvest, Cultivar and Tasting Notes remain visible.
+- Seven cultivar images are replaced with the user-cut originals.
+- Admin covers Logo, Hero, Story, Our Matcha, Library cultivars, Atlas,
+  Menu, three Updates, Contact and Closing.
 
-Upload every extracted file to the GitHub repository root.
+This is a static Admin v1. It does not store customer information and does not
+publish directly to GitHub. Secure login/database publishing can be added later.
