@@ -848,6 +848,10 @@ body{
 .matcha-copy dl{margin-bottom:24px}
 .matcha-copy .tasting-row dd{max-width:330px;text-align:right}
 .cultivar-study-card figure img{object-fit:contain!important}
+.colour-study-hero{background:#f3eee5;border-radius:24px;overflow:hidden}
+.colour-study-hero img{aspect-ratio:auto!important;height:auto!important;max-height:72vh;object-fit:contain!important;margin:auto}
+html.admin-preview .chasen-cursor{display:none!important}
+html.admin-preview,html.admin-preview body,html.admin-preview a,html.admin-preview button{cursor:auto!important}
 @media(max-width:650px){
   .brand img{width:var(--admin-logo-mobile,105px)!important}
   .hero-copy h1{font-size:var(--hero-title-mobile,58px)!important}

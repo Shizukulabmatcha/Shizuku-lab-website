@@ -349,6 +349,13 @@ function renderRegion(key){
 }
 function openLibrary(topic){
   libraryContent.innerHTML=libraryTopics[topic]||'';
+  let liveData=window.SHIZUKU_DATA||{};
+  try{liveData=JSON.parse(localStorage.getItem('shizuku-admin-preview'))||liveData}catch(error){}
+  if(topic==='cultivars'&&liveData.library){
+    const hero=libraryContent.querySelector('.colour-study-hero img');
+    if(hero&&liveData.library.colourStudyImage)hero.src=liveData.library.colourStudyImage;
+    libraryContent.querySelectorAll('.cultivar-study-card').forEach((card,index)=>{const cultivar=liveData.library.cultivars?.[index];if(!cultivar)return;const image=card.querySelector('img'),region=card.querySelector('.cultivar-region'),title=card.querySelector('h3'),profile=card.querySelector('.cultivar-study-copy>p:not(.cultivar-region)'),tags=card.querySelectorAll('.cultivar-note-row span');if(image)image.src=cultivar.image;if(region)region.textContent=cultivar.region;if(title)title.textContent=cultivar.name;if(profile)profile.textContent=cultivar.profile;if(tags[0])tags[0].textContent=cultivar.tag1;if(tags[1])tags[1].textContent=cultivar.tag2;});
+  }
   libraryDrawer.classList.add('open');
   libraryOverlay.classList.add('open');
   libraryDrawer.setAttribute('aria-hidden','false');
@@ -371,6 +378,11 @@ function openLibrary(topic){
     }));
   }
 }
+
+window.addEventListener('message',event=>{
+  if(event.data?.type==='SHIZUKU_NAVIGATE'&&event.data.target){closeLibraryAndUnlock();scrollToSection(event.data.target)}
+  if(event.data?.type==='SHIZUKU_OPEN_LIBRARY'&&event.data.topic){openLibrary(event.data.topic)}
+});
 function closeLibrary(){
   closeLibraryAndUnlock();
 }

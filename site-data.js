@@ -53,6 +53,16 @@ window.SHIZUKU_DATA = {
   "library": {
     "introTitle": "Look closer.\nThere is more in the bowl.",
     "introBody": "A quiet collection of short guides for anyone curious about how matcha is grown, picked, milled and described.",
+    "colourStudyImage": "matcha-colour-study.jpg",
+    "topics": [
+      { "id": "what-is-matcha", "title": "What is matcha?", "summary": "From shaded tencha leaf to a fine powder." },
+      { "id": "harvest", "title": "First vs second harvest", "summary": "Why harvest timing changes flavour and texture." },
+      { "id": "picking", "title": "Hand-picked or machine-picked?", "summary": "Selection, consistency and what can affect the cup." },
+      { "id": "grinding", "title": "How matcha is ground", "summary": "Stone milling, modern milling and why heat matters." },
+      { "id": "ceremonial", "title": "“Ceremonial grade” explained", "summary": "A useful label, but not one official Japanese standard." },
+      { "id": "atlas", "title": "Matcha Atlas", "summary": "Explore a few of Japan’s best-known tea regions." },
+      { "id": "cultivars", "title": "Matcha Colour Study", "summary": "Compare seven real single-cultivar matcha powders." }
+    ],
     "cultivars": [
       {
         "name": "Uji Midori",

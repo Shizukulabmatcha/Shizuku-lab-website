@@ -1,5 +1,6 @@
 
 (() => {
+  if(new URLSearchParams(location.search).has('admin-preview')) document.documentElement.classList.add('admin-preview');
   const DEFAULT = window.SHIZUKU_DATA || {};
   const saved = localStorage.getItem('shizuku-admin-preview');
   const data = saved ? JSON.parse(saved) : DEFAULT;
@@ -37,7 +38,11 @@
       setHTML('whyTitle',d.why.title);
       document.querySelectorAll('[data-why-index]').forEach((card,i)=>{const item=d.why.items?.[i];if(!item)return;const title=card.querySelector('h3'),body=card.querySelector('p');if(title)title.textContent=item.title;if(body)body.textContent=item.body;});
     }
-    if(d.library){ setHTML('libraryIntroTitle',d.library.introTitle); setText('libraryIntroBody',d.library.introBody); }
+    if(d.library){
+      setHTML('libraryIntroTitle',d.library.introTitle); setText('libraryIntroBody',d.library.introBody);
+      document.querySelectorAll('.library-card[data-topic]').forEach(card=>{const topic=d.library.topics?.find(item=>item.id===card.dataset.topic);if(!topic)return;const title=card.querySelector('strong'),summary=card.querySelector('small');if(title)title.textContent=topic.title;if(summary)summary.textContent=topic.summary;});
+      document.querySelectorAll('[data-library-topic]').forEach(button=>{const topic=d.library.topics?.find(item=>item.id===button.dataset.libraryTopic);if(!topic)return;const number=button.querySelector('span')?.outerHTML||'';button.innerHTML=number+topic.title;});
+    }
 
     document.querySelectorAll('[data-menu-index]').forEach((card,i)=>{
       const item=d.menu[i]; if(!item)return;
@@ -64,7 +69,7 @@
 
   window.addEventListener('message',e=>{
     if(e.data?.type==='SHIZUKU_PREVIEW'){
-      localStorage.setItem('shizuku-admin-preview',JSON.stringify(e.data.data));
+      try{localStorage.setItem('shizuku-admin-preview',JSON.stringify(e.data.data));}catch(error){console.warn('Preview is too large to keep in local storage. It will still work for this session.');}
       render(e.data.data);
     }
     if(e.data?.type==='SHIZUKU_CLEAR_PREVIEW'){
