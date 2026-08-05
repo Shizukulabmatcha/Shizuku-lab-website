@@ -1,80 +1,33 @@
-
-(() => {
-  if(new URLSearchParams(location.search).has('admin-preview')) document.documentElement.classList.add('admin-preview');
-  const DEFAULT = window.SHIZUKU_DATA || {};
-  const saved = localStorage.getItem('shizuku-admin-preview');
-  const data = saved ? JSON.parse(saved) : DEFAULT;
-
-  const html = (value='') => String(value).replace(/\n/g,'<br>');
-  const setText = (id,value) => { const el=document.getElementById(id); if(el) el.textContent=value ?? ''; };
-  const setHTML = (id,value) => { const el=document.getElementById(id); if(el) el.innerHTML=html(value); };
-  const setImg = (id,value) => { const el=document.getElementById(id); if(el&&value) el.src=value; };
-
-  function render(d=data){
-    document.documentElement.style.setProperty('--forest', d.brand.mainColor);
-    document.documentElement.style.setProperty('--paper', d.brand.paperColor);
-    document.documentElement.style.setProperty('--rice', d.brand.riceColor);
-    document.documentElement.style.setProperty('--admin-logo-desktop', `${d.brand.logoDesktop}px`);
-    document.documentElement.style.setProperty('--admin-logo-mobile', `${d.brand.logoMobile}px`);
-
-    document.querySelectorAll('.brand img,.library-sidebar-brand img').forEach(el=>el.src=d.brand.logo);
-    setText('heroEyebrow', d.hero.eyebrow);
-    const heroTitle=document.getElementById('heroTitle');
-    if(heroTitle) heroTitle.innerHTML=`<span>${d.hero.title}</span><br><em>${d.hero.titleItalic}</em>`;
-    setText('heroBody',d.hero.body); setImg('heroImage',d.hero.image);
-    document.documentElement.style.setProperty('--hero-title-desktop', `${d.hero.fontSizeDesktop}px`);
-    document.documentElement.style.setProperty('--hero-title-mobile', `${d.hero.fontSizeMobile}px`);
-    document.querySelector('.hero-copy')?.setAttribute('data-align',d.hero.align);
-
-    if(d.philosophy){ setText('philosophyLine1',d.philosophy.line1); setText('philosophyLine2',d.philosophy.line2); setText('philosophyLine3',d.philosophy.line3); }
-
-    setHTML('storyTitle',d.story.title); setText('storyP1',d.story.paragraph1); setText('storyP2',d.story.paragraph2); setImg('storyImage',d.story.image);
-    setHTML('matchaTitle',d.matcha.title); setText('matchaBody',d.matcha.body); setImg('matchaImage',d.matcha.image);
-    const mi=document.getElementById('matchaImage'); if(mi) mi.style.objectFit=d.matcha.imageFit || 'contain';
-    setText('matchaOrigin',d.matcha.origin); setText('matchaHarvest',d.matcha.harvest); setText('matchaCultivar',d.matcha.cultivar);
-    setText('matchaNotes',d.matcha.tastingNotes); setText('matchaFinish',`Finish: ${d.matcha.finish}`);
-
-    if(d.why){
-      setHTML('whyTitle',d.why.title);
-      document.querySelectorAll('[data-why-index]').forEach((card,i)=>{const item=d.why.items?.[i];if(!item)return;const title=card.querySelector('h3'),body=card.querySelector('p');if(title)title.textContent=item.title;if(body)body.textContent=item.body;});
-    }
-    if(d.library){
-      setHTML('libraryIntroTitle',d.library.introTitle); setText('libraryIntroBody',d.library.introBody);
-      document.querySelectorAll('.library-card[data-topic]').forEach(card=>{const topic=d.library.topics?.find(item=>item.id===card.dataset.topic);if(!topic)return;const title=card.querySelector('strong'),summary=card.querySelector('small');if(title)title.textContent=topic.title;if(summary)summary.textContent=topic.summary;});
-      document.querySelectorAll('[data-library-topic]').forEach(button=>{const topic=d.library.topics?.find(item=>item.id===button.dataset.libraryTopic);if(!topic)return;const number=button.querySelector('span')?.outerHTML||'';button.innerHTML=number+topic.title;});
-    }
-
-    document.querySelectorAll('[data-menu-index]').forEach((card,i)=>{
-      const item=d.menu[i]; if(!item)return;
-      const image=card.querySelector('img'), eyebrow=card.querySelector('.eyebrow'), title=card.querySelector('h3'), body=card.querySelector('.product-copy>p:not(.eyebrow)'), price=card.querySelector('strong');
-      if(image) image.src=item.image; if(eyebrow) eyebrow.textContent=item.eyebrow; if(title) title.textContent=item.name; if(body) body.textContent=item.description; if(price) price.textContent=item.price;
-    });
-
-    document.querySelectorAll('[data-update-index]').forEach((card,i)=>{
-      const item=d.updates[i]; if(!item)return;
-      const image=card.querySelector('img'), date=card.querySelector('small'), title=card.querySelector('h3'), body=card.querySelector('p');
-      if(image) image.src=item.image; if(date) date.textContent=item.date; if(title) title.textContent=item.title; if(body) body.textContent=item.body;
-    });
-
-    setHTML('contactTitle',d.contact.title); setHTML('contactCollection',d.contact.collection);
-    const ig=document.getElementById('contactInstagram'); if(ig){ig.textContent=d.contact.instagram;ig.href=d.contact.instagramUrl;}
-    setImg('closingLogo',d.closing.logo); setText('closingMessage',d.closing.message);
-    const cl=document.getElementById('closingLogo'); if(cl) cl.style.width=`${d.closing.logoSize}px`;
-
-    window.dispatchEvent(new CustomEvent('shizuku-data-rendered',{detail:d}));
-  }
-
-  window.SHIZUKU_RENDER = render;
-  render();
-
-  window.addEventListener('message',e=>{
-    if(e.data?.type==='SHIZUKU_PREVIEW'){
-      try{localStorage.setItem('shizuku-admin-preview',JSON.stringify(e.data.data));}catch(error){console.warn('Preview is too large to keep in local storage. It will still work for this session.');}
-      render(e.data.data);
-    }
-    if(e.data?.type==='SHIZUKU_CLEAR_PREVIEW'){
-      localStorage.removeItem('shizuku-admin-preview');
-      location.reload();
-    }
-  });
+(function(){
+const clone=x=>JSON.parse(JSON.stringify(x));
+let data=clone(window.SHIZUKU_DATA);
+const site=document.getElementById('site'),nav=document.getElementById('nav'),mobileNav=document.getElementById('mobileNav');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nl=s=>esc(s).replace(/\n/g,'<br>');
+const imagePos=o=>{const p=o?.imagePosition||{x:50,y:50},scale=Number(o?.imageScale||1);return `object-position:${Number(p.x??50)}% ${Number(p.y??50)}%;transform:scale(${scale});transform-origin:${Number(p.x??50)}% ${Number(p.y??50)}%;`};
+const img=(src,alt,cls='',owner=null)=>`<img class="${cls}" src="${esc(src)}" alt="${esc(alt)}" style="${imagePos(owner)}">`;
+function fontVars(key){const s=data.sectionStyles[key]||{};return `--section-bg:${s.background};--title-font:'${s.titleFont}',serif;--title-desktop:${s.titleSizeDesktop}px;--title-mobile:${s.titleSizeMobile}px;--body-font:'${s.bodyFont}',sans-serif;--body-size:${s.bodySize}px;--title-color:${s.titleColor};--body-color:${s.bodyColor};`}
+function titleBlock(meta,chapter){return `<div class="section-head"><p class="eyebrow">${esc(meta.eyebrow||chapter||'')}</p><h2>${nl(meta.title)}</h2>${meta.subtitle?`<p class="subtitle">${esc(meta.subtitle)}</p>`:''}</div>`}
+function render(){
+ document.documentElement.style.setProperty('--ink',data.brand.ink);document.documentElement.style.setProperty('--forest',data.brand.forest);document.documentElement.style.setProperty('--paper',data.brand.paper);document.documentElement.style.setProperty('--accent',data.brand.accent);document.documentElement.style.setProperty('--logo-color',data.brand.logoColor);document.documentElement.style.setProperty('--logo-desktop',data.brand.logoDesktop+'px');document.documentElement.style.setProperty('--logo-mobile',data.brand.logoMobile+'px');document.documentElement.style.setProperty('--logo-x-desktop',(data.brand.logoDesktopPosition?.x??6)+'%');document.documentElement.style.setProperty('--logo-y-desktop',(data.brand.logoDesktopPosition?.y??50)+'%');document.documentElement.style.setProperty('--logo-x-mobile',(data.brand.logoMobilePosition?.x??10)+'%');document.documentElement.style.setProperty('--logo-y-mobile',(data.brand.logoMobilePosition?.y??50)+'%');document.documentElement.style.setProperty('--logo-url',`url("${data.brand.logo}")`);
+ const links=[['story','Our Story'],['tea','Our Tea'],['why','Why Us'],['library','Tea Library'],['menu','Menu'],['updates','From the Lab'],['contact','Contact']];
+ nav.innerHTML=links.map(([id,label])=>`<a href="#${id}">${label}</a>`).join('');mobileNav.innerHTML=nav.innerHTML+`<a href="${esc(data.brand.orderUrl)}" target="_blank">Reserve your cup ↗</a>`;document.getElementById('headerOrder').href=data.brand.orderUrl;
+ const whyItems=data.why.items||[],topics=data.library.topics||[],cultivars=data.library.cultivars||[],menuItems=(data.menu||[]).filter(x=>x.status!=='draft'),updates=(data.updates||[]).filter(x=>x.status!=='draft').slice(0,5);
+ site.innerHTML=`
+ <section id="home" class="hero section-theme" style="${fontVars('hero')}"><div class="hero-media">${img(data.hero.image,data.hero.title,'',data.hero)}</div><div class="hero-overlay"></div><div class="hero-copy"><p class="eyebrow">${esc(data.hero.eyebrow)}</p><h1>${esc(data.hero.title)}<br><em>${esc(data.hero.subtitle)}</em></h1><p>${esc(data.hero.body)}</p></div><a class="scroll-cue" href="#philosophy">Scroll to discover <i></i></a></section>
+ <section id="philosophy" class="philosophy section-theme" style="${fontVars('philosophy')}"><div class="section-inner">${titleBlock(data.philosophy)}${data.philosophy.body?`<p class="wide-body">${esc(data.philosophy.body)}</p>`:''}</div></section>
+ <section id="story" class="story section-theme" style="${fontVars('story')}"><div class="story-grid section-inner"><div class="portrait-media">${img(data.story.image,data.story.title,'',data.story)}</div><div>${titleBlock(data.story)}<p>${esc(data.story.paragraph1)}</p><p>${esc(data.story.paragraph2)}</p></div></div></section>
+ <section id="tea" class="tea section-theme" style="${fontVars('tea')}"><div class="section-inner">${titleBlock(data.tea)}<p class="wide-body">${esc(data.tea.body)}</p><div class="tea-grid">${(data.tea.items||[]).map(t=>`<article class="tea-card"><div class="tea-image">${img(t.image,t.name,'',t)}</div><div><h3>${esc(t.name)}</h3><dl><div><dt>Origin</dt><dd>${esc(t.origin)}</dd></div><div><dt>Harvest</dt><dd>${esc(t.harvest)}</dd></div><div><dt>Profile</dt><dd>${esc(t.profile)}</dd></div><div><dt>Finish</dt><dd>${esc(t.finish)}</dd></div></dl></div></article>`).join('')}</div></div></section>
+ <section id="why" class="why section-theme" style="${fontVars('why')}"><div class="section-inner">${titleBlock(data.why)}<div class="why-list">${whyItems.map((w,i)=>`<article><span>${String(i+1).padStart(2,'0')}</span><h3>${esc(w.title)}</h3><p>${esc(w.body)}</p></article>`).join('')}</div></div></section>
+ <section id="library" class="library section-theme" style="${fontVars('library')}"><div class="section-inner">${titleBlock(data.library)}<p class="wide-body">${esc(data.library.body)}</p><div class="topic-grid">${topics.map((t,i)=>`<button class="topic-card" data-topic="${esc(t.id)}"><span>${String(i+1).padStart(2,'0')}</span><h3>${esc(t.title)}</h3><p>${esc(t.subtitle)}</p><i>Explore ↗</i></button>`).join('')}</div><div class="cultivar-head"><p class="eyebrow">CULTIVAR COLOUR STUDY</p><h3>One powder at a time.</h3></div><div class="cultivar-grid">${cultivars.map(c=>`<article class="cultivar-card"><div>${img(c.image,c.name,'',c)}</div><h4>${esc(c.name)}</h4><small>${esc(c.region)}</small><p>${esc(c.profile)}</p><span>${esc(c.tag1)}</span><span>${esc(c.tag2)}</span></article>`).join('')}</div></div></section>
+ <section id="menu" class="menu section-theme" style="${fontVars('menu')}"><div class="section-inner">${titleBlock(data.menuMeta)}<div class="menu-list">${menuItems.map((m,i)=>`<article class="menu-card" style="--card:${m.cardColor};--card-text:${m.textColor}"><div class="menu-photo">${img(m.image,m.name,'',m)}</div><div class="colour-card"><p class="eyebrow">${esc(m.eyebrow)}</p><h3>${esc(m.name)}</h3>${m.subtitle?`<h4>${esc(m.subtitle)}</h4>`:''}<p>${esc(m.description)}</p><strong>${esc(m.price)}</strong>${m.milk?`<small>Oat milk (default) · NOBO soy available</small>`:''}</div></article>`).join('')}</div><a class="big-cta" href="${esc(data.brand.orderUrl)}" target="_blank">View full menu & order ↗</a></div></section>
+ <section id="updates" class="updates section-theme" style="${fontVars('updates')}"><div class="section-inner">${titleBlock(data.updatesMeta)}<div class="update-grid">${updates.map(u=>`<article style="--update-card:${u.cardColor}"><div>${img(u.image,u.title,'',u)}</div><small>${esc(u.date)}</small><h3>${esc(u.title)}</h3>${u.subtitle?`<h4>${esc(u.subtitle)}</h4>`:''}<p>${esc(u.body)}</p></article>`).join('')}</div></div></section>
+ <section id="contact" class="contact section-theme" style="${fontVars('contact')}"><div class="section-inner">${titleBlock(data.contact)}<div class="contact-grid"><div><span>Collection</span><p>${nl(data.contact.collection)}</p></div><div><span>Instagram</span><a href="${esc(data.brand.instagramUrl)}" target="_blank">${esc(data.contact.instagram)}</a></div><div><span>Orders</span><a href="${esc(data.brand.orderUrl)}" target="_blank">Reserve your cup ↗</a></div></div><div class="closing"><span class="logo-mark"></span><p>${esc(data.contact.closing)}</p></div></div></section><footer><span>© 2026 SHIZUKU LAB</span><span>${esc(data.brand.descriptor).toUpperCase()}</span></footer>`;
+ bindTopics();
+}
+function bindTopics(){document.querySelectorAll('[data-topic]').forEach(b=>b.onclick=()=>openTopic(b.dataset.topic));}
+function openTopic(id){const t=(data.library.topics||[]).find(x=>x.id===id);if(!t)return;document.getElementById('drawerContent').innerHTML=`<p class="eyebrow">THE TEA LIBRARY</p><h2>${esc(t.title)}</h2>${t.subtitle?`<h3>${esc(t.subtitle)}</h3>`:''}<div class="drawer-image">${img(t.image,t.title,'',t)}</div><p>${esc(t.body)}</p>`;document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open');document.body.classList.add('drawer-open');}
+window.closeLibrary=()=>{document.getElementById('drawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('open');document.body.classList.remove('drawer-open');};
+window.addEventListener('message',e=>{if(e.data?.type==='SHIZUKU_PREVIEW'){data=clone(e.data.data);render()}if(e.data?.type==='SHIZUKU_NAVIGATE')document.getElementById(e.data.target)?.scrollIntoView({behavior:'smooth'});if(e.data?.type==='SHIZUKU_OPEN_LIBRARY')openTopic(e.data.topic);});
+render();
 })();
