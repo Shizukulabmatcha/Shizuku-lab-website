@@ -51,6 +51,9 @@
 .philosophy-line{margin:0;color:var(--title-color)!important;font-family:var(--title-font);font-size:clamp(44px,var(--title-desktop),96px);line-height:1;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0003;max-width:min(1050px,88vw);overflow-wrap:anywhere}
 .philosophy-line .cms-text-style{font-size:clamp(44px,var(--cms-size-d,82px),96px)!important}
 .philosophy-eyebrow .cms-text-style,header nav .cms-text-style,header .order-link .cms-text-style{font-size:clamp(10px,var(--cms-size-d,12px),20px)!important}
+.contact-item{grid-column:var(--contact-column);min-width:0}
+.contact-item>span{display:block}
+.contact-item>p,.contact-item>a{display:block;margin:28px 0 0;overflow-wrap:anywhere}
 .philosophy-line.is-active{font-weight:700;opacity:1;transform:translateX(18px)}
 .philosophy-sequence{position:relative;z-index:0;max-width:none;margin-top:-100vh}
 .philosophy-step{height:100vh;min-height:0;display:block;opacity:0;pointer-events:none}
@@ -65,5 +68,6 @@
  .philosophy-line .cms-text-style{font-size:clamp(32px,var(--cms-size-m,var(--cms-size-d,48px)),54px)!important}
  .philosophy-line.is-active{transform:translateX(7px)}
  .scroll-media{transform:scale(.99)}.scroll-media.scroll-media-active{transform:scale(1.012)}
+ .contact-item{grid-column:auto!important;text-align:left}
 }
 @media(prefers-reduced-motion:reduce){.philosophy-media,.philosophy-line,.scroll-media{transition:none!important;transform:none!important}}
