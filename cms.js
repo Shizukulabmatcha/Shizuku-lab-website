@@ -1,5 +1,6 @@
 (()=>{
 const clone=x=>JSON.parse(JSON.stringify(x));
+document.querySelector('.beta').textContent='CMS 2.7 · ACTUAL PREVIEW';
 let website=clone(window.SHIZUKU_DATA), order=clone(window.SHIZUKU_ORDER_DATA), mode='website', activeWebsite='brand', activeOrder='brand';
 const $=s=>document.querySelector(s), shell=$('#shell'), frame=$('#previewFrame'), websitePanels=$('#websitePanels'), orderPanels=$('#orderPanels');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

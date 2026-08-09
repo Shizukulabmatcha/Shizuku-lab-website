@@ -47,7 +47,9 @@
 .philosophy-shade{background:linear-gradient(90deg,rgba(7,19,14,.78),rgba(7,19,14,.28)),linear-gradient(0deg,rgba(7,19,14,.38),transparent 55%)}
 .philosophy-eyebrow{position:absolute;z-index:2;top:130px;left:7vw;margin:0;color:#fff;opacity:.78}
 .philosophy-copy{position:relative;z-index:2;width:min(1120px,100%);display:grid;gap:22px}
-.philosophy-line{margin:0;color:#fff!important;font-family:var(--title-font);font-size:var(--title-desktop);line-height:.98;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0005}
+.philosophy-line{margin:0;color:#fff!important;font-family:var(--title-font);font-size:clamp(44px,var(--title-desktop),96px);line-height:1;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0005;max-width:min(1050px,88vw);overflow-wrap:anywhere}
+.philosophy-line .cms-text-style{font-size:clamp(44px,var(--cms-size-d,82px),96px)!important}
+.philosophy-eyebrow .cms-text-style,header nav .cms-text-style,header .order-link .cms-text-style{font-size:clamp(10px,var(--cms-size-d,12px),20px)!important}
 .philosophy-line.is-active{font-weight:700;opacity:1;transform:translateX(18px)}
 .philosophy-sequence{position:relative;z-index:0;max-width:none;margin-top:-100vh}
 .philosophy-step{height:100vh;min-height:0;display:block;opacity:0;pointer-events:none}
@@ -58,7 +60,8 @@
  .philosophy-sticky{padding:95px 28px 40px}
  .philosophy-eyebrow{top:102px;left:28px}
  .philosophy-copy{gap:18px}
- .philosophy-line{font-size:var(--title-mobile);line-height:1.02;opacity:.28}
+ .philosophy-line{font-size:clamp(32px,var(--title-mobile),54px);line-height:1.04;opacity:.28;max-width:88vw}
+ .philosophy-line .cms-text-style{font-size:clamp(32px,var(--cms-size-m,var(--cms-size-d,48px)),54px)!important}
  .philosophy-line.is-active{transform:translateX(7px)}
  .scroll-media{transform:scale(.99)}.scroll-media.scroll-media-active{transform:scale(1.012)}
 }
