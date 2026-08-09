@@ -133,7 +133,9 @@ window.SHIZUKU_DATA = {
     "eyebrow": "01 · PHILOSOPHY",
     "title": "In a world that moves quickly,",
     "subtitle": "we choose to make one cup at a time.",
-    "body": "A small studio built around tea, care and quiet attention."
+    "body": "A small studio built around tea, care and quiet attention.",
+    "video": "assets/philosophy-matcha-pour.mp4",
+    "videoShade": 58
   },
   "story": {
     "eyebrow": "OUR STORY",

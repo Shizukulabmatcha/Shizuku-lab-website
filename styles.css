@@ -39,15 +39,16 @@
 
 /* CMS 2.1 — rolling philosophy, individual typography and photo motion */
 .cms-text-style{font-family:var(--cms-font,inherit)!important;font-size:var(--cms-size-d,inherit)!important}
-.philosophy{height:auto;position:relative;background:#101914;color:#fff}
+.philosophy{height:auto;position:relative;background:var(--section-bg);color:var(--body-color)}
 .philosophy-sticky{position:sticky;top:0;height:100vh;overflow:hidden;z-index:1;display:grid;place-items:center;padding:110px 7vw 55px}
 .philosophy-media,.philosophy-shade{position:absolute;inset:0}
 .philosophy-media{transform:scale(var(--roll-zoom,1));transition:transform .18s linear;will-change:transform}
-.philosophy-media img{width:100%;height:100%;object-fit:cover}
-.philosophy-shade{background:linear-gradient(90deg,rgba(7,19,14,.78),rgba(7,19,14,.28)),linear-gradient(0deg,rgba(7,19,14,.38),transparent 55%)}
-.philosophy-eyebrow{position:absolute;z-index:2;top:130px;left:7vw;margin:0;color:#fff;opacity:.78}
+.philosophy-media img,.philosophy-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.philosophy-media video{z-index:1}
+.philosophy-shade{background:var(--section-bg);opacity:var(--video-shade,.58)}
+.philosophy-eyebrow{position:absolute;z-index:2;top:130px;left:7vw;margin:0;color:var(--body-color);opacity:.88}
 .philosophy-copy{position:relative;z-index:2;width:min(1120px,100%);display:grid;gap:22px}
-.philosophy-line{margin:0;color:#fff!important;font-family:var(--title-font);font-size:clamp(44px,var(--title-desktop),96px);line-height:1;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0005;max-width:min(1050px,88vw);overflow-wrap:anywhere}
+.philosophy-line{margin:0;color:var(--title-color)!important;font-family:var(--title-font);font-size:clamp(44px,var(--title-desktop),96px);line-height:1;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0003;max-width:min(1050px,88vw);overflow-wrap:anywhere}
 .philosophy-line .cms-text-style{font-size:clamp(44px,var(--cms-size-d,82px),96px)!important}
 .philosophy-eyebrow .cms-text-style,header nav .cms-text-style,header .order-link .cms-text-style{font-size:clamp(10px,var(--cms-size-d,12px),20px)!important}
 .philosophy-line.is-active{font-weight:700;opacity:1;transform:translateX(18px)}
