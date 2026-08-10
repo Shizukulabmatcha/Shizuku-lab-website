@@ -27,7 +27,9 @@
       Object.keys(value).forEach(key=>{out[key]=compactForCloud(value[key],fallback?.[key])});
       return out;
     }
-    if(typeof value === 'string' && /^data:(image|video)\//.test(value) && typeof fallback === 'string' && !fallback.startsWith('data:')) return fallback;
+    // Keep uploaded photos in the cloud payload. Replacing them with a
+    // packaged fallback made preview and the published website disagree.
+    if(typeof value === 'string' && /^data:video\//.test(value) && typeof fallback === 'string' && !fallback.startsWith('data:')) return fallback;
     return value;
   }
   function cloudPayload(data){return compactForCloud(data,window.SHIZUKU_DATA||{});}

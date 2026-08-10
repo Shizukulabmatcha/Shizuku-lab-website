@@ -48,9 +48,9 @@
 .philosophy-shade{background:var(--section-bg);opacity:var(--video-shade,.58)}
 .philosophy-eyebrow{position:absolute;z-index:2;top:130px;left:7vw;margin:0;color:var(--body-color);opacity:.88}
 .philosophy-copy{position:relative;z-index:2;width:min(1120px,100%);display:grid;gap:22px}
-.philosophy-line{margin:0;color:var(--title-color)!important;font-family:var(--title-font);font-size:clamp(44px,var(--title-desktop),96px);line-height:1;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0003;max-width:min(1050px,88vw);overflow-wrap:anywhere}
-.philosophy-line .cms-text-style{font-size:clamp(44px,var(--cms-size-d,82px),96px)!important}
-.philosophy-eyebrow .cms-text-style,header nav .cms-text-style,header .order-link .cms-text-style{font-size:clamp(10px,var(--cms-size-d,12px),20px)!important}
+.philosophy-line{margin:0;color:var(--title-color)!important;font-family:var(--title-font);font-size:var(--title-desktop);line-height:1;font-weight:400;opacity:.34;transform:translateX(0);transition:opacity .45s ease,font-weight .3s ease,transform .45s ease;text-shadow:0 2px 24px #0003;max-width:min(1050px,88vw);overflow-wrap:anywhere}
+.philosophy-line .cms-text-style{font-size:var(--cms-size-d,var(--title-desktop))!important}
+.philosophy-eyebrow .cms-text-style,header nav .cms-text-style,header .order-link .cms-text-style{font-size:var(--cms-size-d,inherit)!important}
 .contact-item{grid-column:var(--contact-column);min-width:0}
 .contact-item>span{display:block}
 .contact-item>p,.contact-item>a{display:block;margin:28px 0 0;overflow-wrap:anywhere}
@@ -64,8 +64,8 @@
  .philosophy-sticky{padding:95px 28px 40px}
  .philosophy-eyebrow{top:102px;left:28px}
  .philosophy-copy{gap:18px}
- .philosophy-line{font-size:clamp(32px,var(--title-mobile),54px);line-height:1.04;opacity:.28;max-width:88vw}
- .philosophy-line .cms-text-style{font-size:clamp(32px,var(--cms-size-m,var(--cms-size-d,48px)),54px)!important}
+ .philosophy-line{font-size:var(--title-mobile);line-height:1.04;opacity:.28;max-width:88vw}
+ .philosophy-line .cms-text-style{font-size:var(--cms-size-m,var(--cms-size-d,var(--title-mobile)))!important}
  .philosophy-line.is-active{transform:translateX(7px)}
  .scroll-media{transform:scale(.99)}.scroll-media.scroll-media-active{transform:scale(1.012)}
  .contact-item{grid-column:auto!important;text-align:left}
