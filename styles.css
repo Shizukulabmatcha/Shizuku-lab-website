@@ -71,3 +71,4 @@
  .contact-item{grid-column:auto!important;text-align:left}
 }
 @media(prefers-reduced-motion:reduce){.philosophy-media,.philosophy-line,.scroll-media{transition:none!important;transform:none!important}}
+@media(min-width:901px){header nav{gap:12px 26px;max-width:66vw;justify-content:center;flex-wrap:wrap}}
