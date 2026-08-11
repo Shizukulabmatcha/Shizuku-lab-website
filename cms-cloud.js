@@ -20,30 +20,44 @@
     return data.user;
   }
   async function signOut(){ if(client) await client.auth.signOut(); }
-  function compactForCloud(value, fallback){
-    if(Array.isArray(value)) return value.map((item,i)=>compactForCloud(item,Array.isArray(fallback)?fallback[i]:undefined));
-    if(value && typeof value === 'object'){
+  async function uploadDataUrl(value){
+    const comma=value.indexOf(','),meta=comma>-1?value.slice(5,comma):'',body=comma>-1?value.slice(comma+1):'';
+    if(comma<0) return value;
+    const mime=meta.split(';')[0]||'application/octet-stream',isBase64=/;base64/i.test(meta),binary=isBase64?atob(body):decodeURIComponent(body),bytes=isBase64?new Uint8Array(binary.length):new TextEncoder().encode(binary);
+    if(isBase64)for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+    const digest=await crypto.subtle.digest('SHA-256',bytes),hash=[...new Uint8Array(digest)].slice(0,12).map(x=>x.toString(16).padStart(2,'0')).join('');
+    const ext=({
+      'image/png':'png','image/jpeg':'jpg','image/webp':'webp','image/svg+xml':'svg',
+      'video/mp4':'mp4','video/quicktime':'mov','video/webm':'webm'
+    })[mime]||'bin';
+    const path=`website/${hash}.${ext}`;
+    const { error }=await client.storage.from('website-media').upload(path,bytes,{upsert:true,contentType:mime,cacheControl:'31536000'});
+    if(error)throw new Error(`Media upload failed: ${error.message}. Run the latest SUPABASE-WEBSITE-CMS.sql once.`);
+    return client.storage.from('website-media').getPublicUrl(path).data.publicUrl;
+  }
+  async function prepareForCloud(value){
+    if(Array.isArray(value))return Promise.all(value.map(prepareForCloud));
+    if(value&&typeof value==='object'){
       const out={};
-      Object.keys(value).forEach(key=>{out[key]=compactForCloud(value[key],fallback?.[key])});
+      for(const key of Object.keys(value))out[key]=await prepareForCloud(value[key]);
       return out;
     }
-    // Keep uploaded photos in the cloud payload. Replacing them with a
-    // packaged fallback made preview and the published website disagree.
-    if(typeof value === 'string' && /^data:video\//.test(value) && typeof fallback === 'string' && !fallback.startsWith('data:')) return fallback;
+    if(typeof value==='string'&&/^data:(image|video)\//.test(value))return uploadDataUrl(value);
     return value;
   }
-  function cloudPayload(data){return compactForCloud(data,window.SHIZUKU_DATA||{});}
+  async function cloudPayload(data){return prepareForCloud(data);}
   async function loadDraft(){
     if(!client) return null;
-    const { data, error } = await client.from('website_drafts').select('data,updated_at').eq('id','main').maybeSingle();
+    let { data, error } = await client.from('website_drafts').select('data,updated_at').eq('id','main_v2').maybeSingle();
     if(error) throw error;
+    if(!data){({data,error}=await client.from('website_drafts').select('data,updated_at').eq('id','main').maybeSingle());if(error)throw error;}
     return data || null;
   }
   async function saveDraft(data){
     if(!client) throw new Error('Supabase is not configured.');
     const user = await currentUser();
     if(!user) throw new Error('Please sign in first.');
-    const payload = { id:'main', data:cloudPayload(data), updated_at:new Date().toISOString(), updated_by:user.id };
+    const payload = { id:'main_v2', data:await cloudPayload(data), updated_at:new Date().toISOString(), updated_by:user.id };
     const { error } = await client.from('website_drafts').upsert(payload,{onConflict:'id'});
     if(error) throw error;
   }
@@ -51,10 +65,10 @@
     if(!client) throw new Error('Supabase is not configured.');
     const user = await currentUser();
     if(!user) throw new Error('Please sign in first.');
-    const now = new Date().toISOString(), compact=cloudPayload(data);
-    const live = await client.from('website_live').upsert({ id:'main', data:compact, updated_at:now, updated_by:user.id },{onConflict:'id'});
+    const now = new Date().toISOString(), compact=await cloudPayload(data);
+    const live = await client.from('website_live').upsert({ id:'main_v2', data:compact, updated_at:now, updated_by:user.id },{onConflict:'id'});
     if(live.error) throw live.error;
-    const draft = await client.from('website_drafts').upsert({ id:'main', data:compact, updated_at:now, updated_by:user.id },{onConflict:'id'});
+    const draft = await client.from('website_drafts').upsert({ id:'main_v2', data:compact, updated_at:now, updated_by:user.id },{onConflict:'id'});
     if(draft.error) throw draft.error;
   }
   window.ShizukuCloud = { configured, client, allowedEmail, currentUser, signIn, signOut, loadDraft, saveDraft, publish };

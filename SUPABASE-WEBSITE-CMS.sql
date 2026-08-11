@@ -18,6 +18,50 @@ create table if not exists public.website_drafts (
 alter table public.website_live enable row level security;
 alter table public.website_drafts enable row level security;
 
+-- Website photos, icons and videos live here instead of inside one oversized
+-- database row. Re-running this block is safe.
+insert into storage.buckets (id, name, public)
+values ('website-media', 'website-media', true)
+on conflict (id) do update set public = true;
+
+drop policy if exists "website media is public" on storage.objects;
+drop policy if exists "admin can upload website media" on storage.objects;
+drop policy if exists "admin can update website media" on storage.objects;
+drop policy if exists "admin can delete website media" on storage.objects;
+
+create policy "website media is public"
+on storage.objects for select
+to anon, authenticated
+using (bucket_id = 'website-media');
+
+create policy "admin can upload website media"
+on storage.objects for insert
+to authenticated
+with check (
+  bucket_id = 'website-media'
+  and lower(coalesce(auth.jwt()->>'email','')) = 'tinghuioh29@gmail.com'
+);
+
+create policy "admin can update website media"
+on storage.objects for update
+to authenticated
+using (
+  bucket_id = 'website-media'
+  and lower(coalesce(auth.jwt()->>'email','')) = 'tinghuioh29@gmail.com'
+)
+with check (
+  bucket_id = 'website-media'
+  and lower(coalesce(auth.jwt()->>'email','')) = 'tinghuioh29@gmail.com'
+);
+
+create policy "admin can delete website media"
+on storage.objects for delete
+to authenticated
+using (
+  bucket_id = 'website-media'
+  and lower(coalesce(auth.jwt()->>'email','')) = 'tinghuioh29@gmail.com'
+);
+
 -- Re-running this file is safe.
 drop policy if exists "website live is public" on public.website_live;
 drop policy if exists "admin can write website live" on public.website_live;
