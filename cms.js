@@ -1,6 +1,6 @@
 (()=>{
 const clone=x=>JSON.parse(JSON.stringify(x));
-document.querySelector('.beta').textContent='CMS 4.8 · PHOTO UPLOAD FIX';
+document.querySelector('.beta').textContent='CMS 4.9 · FAST LOAD';
 let website=clone(window.SHIZUKU_DATA), order=clone(window.SHIZUKU_ORDER_DATA), mode='website', activeWebsite='brand', activeOrder='brand', themeTarget='website', themePreview=null, themePaletteChoice=null;
 const $=s=>document.querySelector(s), shell=$('#shell'), frame=$('#previewFrame'), websitePanels=$('#websitePanels'), orderPanels=$('#orderPanels');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -127,7 +127,7 @@ $('#publish').onclick=async()=>{
   const user=await refreshCloudStatus();
   if(!user){openCloudLogin('Sign in first, then press Publish Website again.');return}
   saveStatus.textContent='Compacting & publishing…';
-  try{await cloud.publish(website);await put('shizuku-published',{website,publishedAt:new Date().toISOString()});try{localStorage.setItem('shizuku-website-live-cache-v1',JSON.stringify({data:website,cachedAt:Date.now()}))}catch(e){}saveStatus.textContent='Published live ✓';saveStatus.style.background='#dfe8d9';alert('Published. The live website now reads this version from Supabase.');}
+  try{await cloud.publish(website);await put('shizuku-published',{website,publishedAt:new Date().toISOString()});try{localStorage.setItem('shizuku-website-live-cache-v3',JSON.stringify({data:website,cachedAt:Date.now()}))}catch(e){}saveStatus.textContent='Published live ✓';saveStatus.style.background='#dfe8d9';alert('Published. The live website now reads this version from Supabase.');}
   catch(err){saveStatus.textContent='Publish failed';alert('Could not publish. If this is the first setup, run SUPABASE-WEBSITE-CMS.sql in Supabase SQL Editor first.\n\n'+(err.message||err));}
 };
 $('#exportBackup').onclick=()=>{const blob=new Blob([JSON.stringify({website,order},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='shizuku-workspace-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
